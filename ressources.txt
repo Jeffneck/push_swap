@@ -1,0 +1,15 @@
+
+Sorting values is simple. To sort them the fastest way possible is less simple, especially
+because from one integers configuration to another, the most efficient sorting algorithm
+can differ.
+
+The numbers can be distributed between IN_MIN and INT_MAX.
+
+ the program should adapt the algo used according to respect following guidelines : 
+ 4 different algos should be used and they have to respect the given complexity index.
+    Tiny algo = list of 3 nbs : < 2-3 instructions
+    Simple algo = list of 5 nbs : < 12 instructions (aim 8)
+    Middle algo = list of 100 nbs : < 700 instructions
+    Advanced algo = list of 500 nbs : < 5500 instructions
+
+

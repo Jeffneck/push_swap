@@ -13,3 +13,4 @@ The numbers can be distributed between IN_MIN and INT_MAX.
     Advanced algo = list of 500 nbs : < 5500 instructions
 
 
+https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a

@@ -23,6 +23,13 @@ int b_is_empty(t_stconfig stB)
         return (0);
     return (1);
 }
+
+void checker(t_stconfig *stA, t_stconfig *stB)
+{
+    //lire stdin avec get next line ?
+    
+}
+
 int *ft_args_to_int_tab(int size, char **args)
 {
     char **c_tab;
@@ -33,17 +40,16 @@ int *ft_args_to_int_tab(int size, char **args)
     i_tab = NULL;
     
     if (size == 1)
-    {
-        //c_tab = ft_split les espaces
-    }
+        c_tab = ft_strsplit(args[0], ' ');
     else
-    {
         c_tab = args;
-    }
+    if (c_tab == NULL)
+        return (NULL);
+    //transformer un tableau de str en tab d'int
     i = 0;
     while (i < size)
     {
-        i_tab = ft_atoi(c_tab[i]);
+        i_tab[i] = ft_atoi(c_tab[i]);
         i++;
     }
 }
@@ -52,12 +58,13 @@ int    main(int argc, char *argv[])
     t_stconfig *stA;
     t_stconfig *stB;
     int *tab;
+    size_t size_tab;
 
     if (argc < 2)
         return;
-    tab = ft_args_to_int_tab(argc - 1, &argv[1])
-    while(i < (argc - 1))
-    stA = ft_create_stack();
+    tab = ft_args_to_int_tab(argc - 1, &argv[1]);
+    stA = ft_create_stack(tab, (size_t)(argc - 1));
+    stB = ft_create_stack(NULL, 0);
 }
 
 int 

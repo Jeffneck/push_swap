@@ -30,29 +30,6 @@ void checker(t_stconfig *stA, t_stconfig *stB)
     
 }
 
-int *ft_args_to_int_tab(int size, char **args)
-{
-    char **c_tab;
-    int *i_tab;
-    int i; 
-
-    c_tab = NULL;
-    i_tab = NULL;
-    
-    if (size == 1)
-        c_tab = ft_strsplit(args[0], ' ');
-    else
-        c_tab = args;
-    if (c_tab == NULL)
-        return (NULL);
-    //transformer un tableau de str en tab d'int
-    i = 0;
-    while (i < size)
-    {
-        i_tab[i] = ft_atoi(c_tab[i]);
-        i++;
-    }
-}
 int    main(int argc, char *argv[]) 
 {
     t_stconfig *stA;
@@ -66,6 +43,4 @@ int    main(int argc, char *argv[])
     stA = ft_create_stack(tab, (size_t)(argc - 1));
     stB = ft_create_stack(NULL, 0);
 }
-
-int 
 

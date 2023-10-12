@@ -50,4 +50,137 @@ void    push_st1_to_st2(t_stconfig *st_src, t_stconfig *st_dest)
     st_src->size--;
 }
 
-void    
+void    rotate_st(t_stconfig *st)
+{
+    t_stelem *original_top; 
+    t_stelem *original_bot;
+
+    original_top = st->top; 
+    original_bot = st->bottom;
+
+    if (!st)
+        return; //erreur car une stack n'existe pas ?
+    if (!st->top || st->top == st->bottom)
+        return; // inutile de rotate si stack vide ou 1 seul elem.
+    
+    //pop top node
+    st->top = original_top->next;
+    (st->top)->prev = NULL;
+
+    //push back top node
+    st->bottom = original_top; 
+    (st->bottom)->next = NULL;
+    (st->bottom)->prev = original_bot;
+}
+
+void    reverse_rotate_st(t_stconfig *st)
+{
+    t_stelem *original_top; 
+    t_stelem *original_bot; 
+    t_stelem *original_prev_bot;
+
+    original_top = st->top; 
+    original_bot = st->bottom;
+    original_prev_bot = (st->bottom)->prev; 
+
+    if (!st)
+        return; //erreur car une stack n'existe pas ?
+    if (!st->top || st->top == st->bottom)
+        return; // inutile de rotate si stack vide ou 1 seul elem.
+    
+    //make new top node
+    st->top = original_bot;
+    (st->top)->next = original_top;
+    (st->top)->prev = NULL;
+
+    //make new bottom node
+    st->bottom = original_prev_bot; 
+    (st->bottom)->next = NULL;
+}
+
+void    swap_manager(t_stconfig *stA, t_stconfig *stB, char *operation)
+{
+    if (ft_strcmp(operation, "sa"))
+        swap_top_stack(stA);
+    else if (ft_strcmp(operation, "sb"))
+        swap_top_stack(stB);
+    else if (ft_strcmp(operation, "ss"))
+    {
+        swap_top_stack(stA);
+        swap_top_stack(stB);
+    }
+}
+void    push_manager(t_stconfig *stA, t_stconfig *stB, char *operation)
+{
+    if (ft_strcmp(operation, "pa") == 0)
+        push_st1_to_st2(stB, stA);
+    else if (ft_strcmp(operation, "pb") == 0)
+        push_st1_to_st2(stA, stB);
+}
+void    rotate_manager(t_stconfig *stA, t_stconfig *stB, char *operation)
+{
+    if (ft_strcmp(operation, "ra") == 0)
+        rotate_st(stA);
+    else if (ft_strcmp(operation, "rb") == 0)
+        rotate_st(stB);
+    else if (ft_strcmp(operation, "rr") == 0)
+    {
+        rotate_st(stA);
+        rotate_st(stB);
+    }
+}
+void    reverse_rotate_manager(t_stconfig *stA, t_stconfig *stB, char *operation)
+{
+    if (ft_strcmp(operation, "rra") == 0)
+        reverse_rotate_st(stA);
+    else if (ft_strcmp(operation, "rrb") == 0)
+        reverse_rotate_st(stB);
+    else if (ft_strcmp(operation, "rrr") == 0)
+    {
+        reverse_rotate_st(stA);
+        reverse_rotate_st(stB);
+    }
+}
+
+
+
+int     operation_exists (char *operation)
+{
+    char *valid_operations[] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"};
+    size_t num_valid_operations;
+    size_t i; 
+
+    i = 0;
+    num_valid_operations = sizeof(valid_operations) / sizeof(valid_operations[0]);
+    
+    while (i < num_valid_operations) 
+    {
+        if (ft_strcmp(operation, valid_operations[i]) == 0) 
+        {
+            return 1; // Opération valide trouvée
+        }
+        i++;
+    }
+    return 0; // Aucune opération valide trouvée
+}
+int    operation_manager(t_stconfig *stA, t_stconfig *stB, char **operations)
+{
+    size_t i;
+
+    i = 0;
+    while(operations[i])
+    {
+        if (!operation_exists)
+            return (0);
+        else if (operations[i][0] == 's')
+            swap_manager(stA, stB, operations[i]);
+        else if (operations[i][0] == 'p')
+            push_manager(stA, stB, operations[i]);
+        else if (operations[i][0] == 'r' && ft_strlen(operations[i]) == 2)
+            rotate_manager(stA, stB, operations[i]);
+        else
+            reverse_rotate_manager(stA, stB, operations[i]);
+        printf("%s\n", operations[i]); //affichage de l'operation
+    }
+    return (1);
+}    

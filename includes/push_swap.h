@@ -23,11 +23,20 @@ typedef struct s_stconfig
     size_t  size;
 }   t_stconfig;
 
+typedef struct s_chuncks
+{
+    int nb_chuncks; //pas obligatoire ?
+    int min_stA;
+    int max_stA; //pas obligatoire ? 
+    int range;
+}   t_chuncks;
 
 //CREATE_STACK.c
 t_stconfig  *ft_create_stack(int *p_data, size_t nb_args);
+t_stconfig *ft_init_stack_config(void);
 
-
+//PROCESS_ARGS.c
+int *ft_args_to_int_tab(int size, char **args);
 
 
 #endif //PUSH_SWAP_H

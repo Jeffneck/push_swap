@@ -38,5 +38,13 @@ t_stconfig *ft_init_stack_config(void);
 //PROCESS_ARGS.c
 int *ft_args_to_int_tab(int size, char **args);
 
+//STACK_OPERATIONS.c
+int    operation_manager(t_stconfig *stA, t_stconfig *stB, char **operations);
+
+//STACK_UTILS.c
+int pos_min_stack(t_stconfig st);
+int pos_max_stack(t_stconfig st);
+int min_in_stack(t_stconfig st);
+int max_in_stack(t_stconfig st);
 
 #endif //PUSH_SWAP_H

@@ -10,8 +10,8 @@ void    algo_3_stack(t_stconfig *stA, t_stconfig *stB)
     size_t pos_min; 
     size_t pos_max;
 
-    pos_min = find_pos_min_stack(stA);
-    pos_max = find_pos_max_stack(stA);
+    pos_min = pos_min_stack(*stA);
+    pos_max = pos_max_stack(*stA);
     if (pos_min == 0)
     {
         if (pos_max == 2)
@@ -42,50 +42,6 @@ void    algo_5_stack(t_stconfig *stA, t_stconfig *stB)
     if ( 
 
     )
-}
-t_chuncks *determine_chuncks(t_stconfig *stA)
-{
-    t_chuncks *ch;
-    
-    ch = (t_chuncks *) malloc (sizeof(t_chuncks));
-    if (ch == NULL)
-        return(NULL);
-    if (stA->size < 200)
-        ch ->nb_chuncks = 5;
-    else
-        ch->nb_chuncks = 11;
-    ch->min_stA = find_min_stack(stA); //ecrire la fonction 
-    ch->max_stA = find_max_stack(stA); //ecrire la fonction 
-    ch->range = (ch->max_stA - ch->min_stA) / ch->nb_chuncks;
-    return (ch);
-}
-
-int    algo_big_stack(t_stconfig *stA, t_stconfig *stB)
-{
-    t_chuncks *chuncks;
-    int movement;
-    
-    chuncks = determine_chuncks(stA);
-    //fonction 1
-    while (stA->top)
-    {
-        movement = best_movement_possible(chuncks, stA); // coder la fonction (3 = 3 x ra / -5 = 5 x rra, 0 = not move)
-        
-        while (movement > 0)
-        {
-            //ra
-            movement--;
-        }
-        while (movement < 0)
-        {
-            //rra
-            movement++;
-        }
-        //pb
-    }
-    //fonction 2
-    //chercher stBmax et déterminer si rb ou rrb est le plus intéressant
-    //push a
 }
 
 void    sort_stack(t_stconfig *stA, t_stconfig *stB)

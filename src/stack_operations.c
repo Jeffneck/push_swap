@@ -2,7 +2,7 @@
 #include "../includes/libft/libft.h"
 
 // commandes sa, sb et ss
-void swap_top_stack(t_stconfig *st)
+void    swap_top_stack(t_stconfig *st)
 {
     t_stelem *original_first;
     t_stelem *original_second;
@@ -24,30 +24,30 @@ void swap_top_stack(t_stconfig *st)
 }
 
 // the top element of st_src is popped from st_src and then puhed on the top of st_dest
-void    push_st1_to_st2(t_stconfig *st_src, t_stconfig *st_dest)
+void    push_st1_to_st2(t_stconfig *st1, t_stconfig *st2)
 {
-    t_stelem *original_top_dest; 
-    t_stelem *original_top_src;
+    t_stelem *original_top_st2; 
+    t_stelem *original_top_st1;
 
-    original_top_dest = st_dest->top;
-    original_top_src = st_src->top;
+    original_top_st2 = st2->top;
+    original_top_st1 = st1->top;
 
-    if (!st_src || !st_dest)
+    if (!st1 || !st2)
         return; //erreur car une stack n'existe pas ?
-    if (!st_src->top)
+    if (!st1->top)
         return; //erreur car push impossible ?
     
-    //push du top node src sur st_dest
-    st_dest->top = original_top_src; 
-    (st_dest->top)->next = original_top_dest;
-    (st_dest->top)->prev = NULL;
-    st_dest->size++;
+    //push du top node src sur st2
+    st2->top = original_top_st1; 
+    (st2->top)->next = original_top_st2;
+    (st2->top)->prev = NULL;
+    st2->size++;
 
-    //pop du top node sur st_src
-    st_src->top = original_top_src->next;
-    if (st_src->top)
-        (st_src->top)->prev = NULL;
-    st_src->size--;
+    //pop du top node sur st1
+    st1->top = original_top_st1->next;
+    if (st1->top)
+        (st1->top)->prev = NULL;
+    st1->size--;
 }
 
 void    rotate_st(t_stconfig *st)

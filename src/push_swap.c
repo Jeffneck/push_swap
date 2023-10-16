@@ -17,31 +17,37 @@ void    algo_3_stack(t_stconfig *stA, t_stconfig *stB)
         if (pos_max == 2)
             return; 
         else
-            printf("sa\nra\n");
+            operation_manager(stA, stB, ft_strsplit("sa,ra", ','));
     }
     else if (pos_max == 0)
     {
         if (pos_min == 1)
-            printf("ra\n");
+            operation_manager(stA, stB, ft_strsplit("ra", ','));
         else
-            printf("sa\nrra\n");
+            operation_manager(stA, stB, ft_strsplit("sa,rra", ','));
     }
     else 
     {
         if (pos_min == 1)
-            printf("sa\n");
+            operation_manager(stA, stB, ft_strsplit("sa", ','));
         else
-            printf("rra\n");
+            operation_manager(stA, stB, ft_strsplit("rra", ','));
     }
     
 }
 
 void    algo_5_stack(t_stconfig *stA, t_stconfig *stB)
 {
-    printf("pb\npb");
-    if ( 
-
-    )
+    operation_manager(stA, stB, ft_strsplit("pb,pb", ','));
+    algo_3_stack(stA, stB);
+    if (stB->top < stA->top)
+        operation_manager(stA, stB, ft_strsplit("pa", ','));
+    else if (stB->top > stA->top)
+        operation_manager(stA, stB, ft_strsplit("pa,ra", ','));
+    else if (stB->top > stA->top->next)
+        operation_manager(stA, stB, ft_strsplit("ra,pa,rra", ','));
+    else
+        operation_manager(stA, stB, ft_strsplit("rra,pa,ra,ra", ','));
 }
 
 void    sort_stack(t_stconfig *stA, t_stconfig *stB)
@@ -53,19 +59,4 @@ void    sort_stack(t_stconfig *stA, t_stconfig *stB)
     else
         algo_big_stack(stA, stB);
     
-}
-int    main(int argc, char *argv[]) 
-{
-    t_stconfig *stA;
-    t_stconfig *stB;
-    int *tab;
-    size_t size_tab;
-
-    if (argc < 2)
-        return;
-    tab = ft_args_to_int_tab(argc - 1, &argv[1]);
-    stA = ft_create_stack(tab, (size_t)(argc - 1));
-    stB = ft_create_stack(NULL, 0);
-    sort_stack(stA, stB);
-    return (0);
 }

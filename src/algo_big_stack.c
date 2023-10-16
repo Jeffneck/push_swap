@@ -90,24 +90,30 @@ void    presort_and_push_chuncks(t_chuncks *chuncks, t_stconfig *stA, t_stconfig
     int current_chunck;
     int movement; //détermine le nb de moves a effectuer pour mettrehold_first ou hold_second au top de stA
 
+    current_chunck = 0;
     while (stA->top)
     {
-        movement = nearest_chunck_nb(chuncks, current_chunck, stA); // coder la fonction (3 = 3 x ra / -5 = 5 x rra, 0 = not move)
-        
+        //boucle pour incrémenter la valeur du chunck quand aucun nb de stA n'est compris dans current_chunck
+        while (nearest_chunck_nb(chuncks, current_chunck, stA) == -1)
+            current_chunck++;
+        movement = nearest_chunck_nb(chuncks, current_chunck, stA);
         while (movement > 0)
         {
-            operation_manager(stA, stB, "ra");
+            operation_manager(stA, stB, ft_strsplit("ra", ','));
             movement--;
         }
         while (movement < 0)
         {
-            operation_manager(stA, stB, "rra");
+            operation_manager(stA, stB, ft_strsplit("rra", ','));
             movement++;
         }
-        operation_manager(stA, stB, "pb");
+        operation_manager(stA, stB, ft_strsplit("pb", ','));        
     }
 }
-
+void    return_sorted_in_stA(t_stconfig *stA, t_stconfig *stB)
+{
+    //mettre en haut de la liste le premier nb > top stB sur la liste stA.
+}
 void    insertion_sort_stB_to_stA(t_stconfig *stA, t_stconfig *stB)
 {
     /*fonction recursive de tri par insertion (decroissant) pour trier la stB dans stA 
@@ -120,18 +126,18 @@ void    insertion_sort_stB_to_stA(t_stconfig *stA, t_stconfig *stB)
     if (i_max < (stB->size / 2))
     {
         while (i_max-- > 0)
-            operation_manager(stA, stB, "rb");
+            operation_manager(stA, stB, ft_strsplit("rb", ','));
     }
     else 
     {
         while (i_max < (stB->size - 1))
-            operation_manager(stA, stB, "rrb");
+            operation_manager(stA, stB, ft_strsplit("rrb", ','));
     }
-    operation_manager(stA, stB, "pa");
+    operation_manager(stA, stB, ft_strsplit("pa", ','));
     return_sorted_in_stA(stA, stB);
     return ;
 }
-int    algo_big_stack(t_stconfig *stA, t_stconfig *stB)
+void    algo_big_stack(t_stconfig *stA, t_stconfig *stB)
 {
     t_chuncks *chuncks;
     

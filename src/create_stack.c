@@ -1,4 +1,6 @@
-#include "push_swap.h"
+#include "../includes/push_swap.h"
+#include "../includes/libft/libft.h"
+
 // Remplir la liste A avec les données initiales
 t_stelem *ft_create_elem(int data)
 {

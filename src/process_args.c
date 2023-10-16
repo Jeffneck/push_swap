@@ -23,4 +23,5 @@ int *ft_args_to_int_tab(int size, char **args)
         i_tab[i] = ft_atoi(c_tab[i]);
         i++;
     }
+    return (i_tab);
 }

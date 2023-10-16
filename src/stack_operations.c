@@ -170,7 +170,7 @@ int    operation_manager(t_stconfig *stA, t_stconfig *stB, char **operations)
     i = 0;
     while(operations[i])
     {
-        if (!operation_exists)
+        if (!operation_exists(operations[i]))
             return (0);
         else if (operations[i][0] == 's')
             swap_manager(stA, stB, operations[i]);

@@ -10,6 +10,9 @@ on traite les chuncks 1 par 1 dans l'ordre croissant
 ensuite on trouve le nb de la chunck courante le plus facile a envoyer sur B (on le met au top stA puis push b)
 les nb d'une même chunck ne seront pas triés dans b, on s'en occuppe au moment de renvoyer le tout sur A
 
+amélioration possible : trier directement les éléments envoyés à stB car on peut utiliser les commandes doubles (ss, rr, rrr) si on s'aperçoit que les 2 stacks 
+
+
 */
 t_chuncks *determine_chuncks(t_stconfig *stA)
 {

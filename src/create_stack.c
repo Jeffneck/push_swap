@@ -10,7 +10,8 @@ t_stelem *ft_create_elem(int data)
     new_elem = (t_stelem*) malloc(sizeof(t_stelem));
     if (!new_elem)
         return (NULL);
-    new_elem->data = data; 
+    new_elem->data = data;
+    new_elem->final_pos = -1; 
     new_elem->prev = NULL;
     new_elem->next = NULL;
     return (new_elem);
@@ -70,6 +71,31 @@ t_stconfig  *ft_create_stack(int *p_data, size_t nb_args)
     return (st);
 }
 
+// func that defines the final pos of each elem of the stack when it'll be sorted
+// helps to facilitate the algos work + checker work
+void    add_final_indexation_to_stelems(t_stconfig st)
+{
+    t_stelem *current;
+    t_stelem *compared;
+    int final_index;
+    
+    current = st.top;
+    final_index = 0;
+    if (st.size < 2)
+        return (NULL);
+    while(current)
+    {
+        compared = st.top;
+        while(compared)
+        {
+            if (compared->data < current->data)
+                final_index++;
+            compared = compared->next;
+        }
+        current->final_pos = final_index;
+        current = current->next;
+    }
+}
 
 /*
 void    ft_display_stack(t_stconfig *st)

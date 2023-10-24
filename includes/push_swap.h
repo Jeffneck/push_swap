@@ -10,6 +10,7 @@
 typedef struct s_stelem
 {
     int data;
+    int final_pos; 
     struct s_stelem *prev;
     struct s_stelem *next;
 }   t_stelem;
@@ -23,12 +24,15 @@ typedef struct s_stconfig
     size_t  size;
 }   t_stconfig;
 
+//structure qui me donne des infos sur mes portions, 
+//utile pour définir la range actuelle de ma portion
+//peut être pas nécessaire
 typedef struct s_chuncks
 {
-    int nb_chuncks; //pas obligatoire ?
-    int min_stA;
-    int max_stA; //pas obligatoire ? 
-    int range;
+    int nb_chuncks; //nb de portions choisies pas obligatoire ?
+    int min_stA; //nb minimum détecté dans la stack
+    int max_stA; //nb maximum détecté dans la stack
+    int range;//diff entre min et max
 }   t_chuncks;
 
 //CREATE_STACK.c

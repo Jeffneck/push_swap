@@ -15,3 +15,4 @@ int    main(int argc, char *argv[])
     sort_stack(stA,stB);
     return (0);
 }
+

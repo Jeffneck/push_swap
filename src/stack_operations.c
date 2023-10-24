@@ -1,6 +1,18 @@
 #include "../includes/push_swap.h"
 #include "../includes/libft/libft.h"
 
+/*operations on stack using operation manager that works with 
+two separated t_stconfig 
+
+the operation is treated in 2 times 
+(operation manager uses the first letter to choose the 2nd func that uses strcmp to launch the good func)
+*/
+
+
+
+
+
+
 // commandes sa, sb et ss
 void    swap_top_stack(t_stconfig *st)
 {
@@ -141,8 +153,6 @@ void    reverse_rotate_manager(t_stconfig *stA, t_stconfig *stB, char *operation
         reverse_rotate_st(stB);
     }
 }
-
-
 
 int     operation_exists (char *operation)
 {

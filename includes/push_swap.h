@@ -4,7 +4,9 @@
 # include <string.h> //size_t
 # include <unistd.h> //write
 # include <stdlib.h> //malloc, free
+# include <limits.h> //INT_MAX, INT_MIN
 # include <stdio.h> // printf (prohibited)
+# include "../libft/libft.h"
 // structure des nodes de la stack 
 // prev permet de remonter la stack en sens inverse mais n'est peut etre pas nécessaire.
 typedef struct s_stelem

@@ -49,7 +49,7 @@ void    push_st1_to_st2(t_stconfig *st1, t_stconfig *st2)
     if (!st1->top)
         return; //erreur car push impossible ?
     
-    //push du top node src sur st2
+    //push du top node srcs sur st2
     st2->top = original_top_st1; 
     (st2->top)->next = original_top_st2;
     (st2->top)->prev = NULL;

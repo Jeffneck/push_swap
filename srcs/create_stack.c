@@ -21,6 +21,7 @@ int    ft_stack_push_front(t_stconfig *st, int data)
 {
     printf("ft_stack_push_front \n");
     t_stelem *new_elem;
+    str = 0;//
 
     new_elem = ft_create_elem(data);
     if (new_elem == NULL)

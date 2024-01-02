@@ -9,10 +9,6 @@ the operation is treated in 2 times
 */
 
 
-
-
-
-
 // commandes sa, sb et ss
 void    swap_top_stack(t_stconfig *st)
 {

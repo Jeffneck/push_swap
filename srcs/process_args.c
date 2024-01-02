@@ -78,5 +78,5 @@ void    extract_args(t_pswap *a_pswap, int nb_args, char **args)
     else 
         a_pswap->c2_args = char2dup(args);
     if (!a_pswap->c2_args)
-        close_error("allocation : malloc error during arguments extraction in char2");
+        close_error(a_pswap, "allocation : malloc error during arguments extraction in char2");
 }

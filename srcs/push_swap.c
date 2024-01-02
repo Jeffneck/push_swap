@@ -1,5 +1,4 @@
 #include "../includes/push_swap.h"
-#include "../includes/libft/libft.h"
 /*
 Ensemble des fonctions qui calculent les opérations optimales à effectuer sur les stacks 
 pour trier les entiers le plus rapidement possible dans la stack A

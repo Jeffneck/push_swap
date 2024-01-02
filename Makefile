@@ -1,4 +1,8 @@
 SRCS	=	srcs/main.c\
+			srcs/misc.c\
+			srcs/push_swap.c\
+			srcs/manage_stelems.c\
+			srcs/manage_errors.c\
 			srcs/create_stack.c\
 			srcs/process_args.c\
 			srcs/stack_operations.c\

@@ -1,80 +1,82 @@
 #include "../includes/push_swap.h"
-void	free_char2(char ***a_map_el2)
+
+
+// int     *create_int1args(char **args) {
+//     long nb;
+//     int *int1args;
+//     size_t nb_args;
+//     size_t i;
+
+//     i = 0;
+//     nb_args = char2len(args);
+//     int1args = (int *) ft_calloc(nb_args, sizeof(int));
+//     if (!int1args)
+//         return (NULL);
+//     while (i < nb_args)
+//     {
+//         nb = ft_atol(args[i]);
+        // if (nb > INT_MAX || nb < INT_MIN)
+//             close_error("arguments : contains number too big for an int"); //creer des codes d' erreurs specifiques et des actions associees, j' ai le droit a exit
+//         int1args[i] = (int) nb;
+//         i++;
+//     }
+//     return (int1args);
+// }
+
+// char    **create_char2args(int size, char **args) {
+//     char **char2args;
+//     size_t i;
+
+//     i = 0;
+//     char2args = NULL;
+//     // Si le programme est lancé avec un seul argument, on split ce dernier
+//     if (size == 1)
+//         char2args = ft_split(args[0], ' ');
+//     // Sinon on copie argv dans une chaine allouee
+//     else 
+//         char2args = char2dup(args);
+//     return (char2args);
+// }
+
+void    verify_format(t_pswap *a_pswap, size_t nb_args, char **args)
 {
-    size_t	i;
-    char	**char2;
+    size_t  i;
+    size_t  j;
+    int len_nbr;
 
     i = 0;
-    char2 = *a_map_el2;
-    while (char2[i])
-    {
-        free(char2[i]);
-        char2[i] = NULL;
-        i++;
-    }
-    free(char2);
-    char2 = NULL;
-}
-
-size_t	char2len(char **char2)
-{
-    size_t	i;
-
-    i = 0;
-    while (char2[i])
-        i++;
-    return (i);
-}
-
-int     *create_int1args(char **args) {
-    int *int1args;
-    size_t nb_args;
-    size_t i;
-
-    i = 0;
-    nb_args = char2len(args);
-    int1args = (int *) ft_calloc(nb_args, sizeof(int));
-    if (!int1args)
-        return (NULL);
+    len_nbr = 0;
     while (i < nb_args)
     {
-        int1args[i] = ft_atol(args[i]);
+        j= 0;
+        while(ft_isspace(args[i][j]))
+            j++;
+        if (ft_issign(args[i][j]))
+            j++;
+        while (args[i][j])
+        {
+            if(!ft_isdigit(args[i][j]));
+                close_error(a_pswap, "argument : bad format");
+            if(len_nbr > 10)
+                close_error(a_pswap, "argument : at least 1 arg is too big for an int");
+            len_nbr++;
+            j++;
+        }
         i++;
     }
-    return (int1args);
 }
-char    **create_char2args(int size, char **args) {
-    char **char2args;
+
+void    extract_args(t_pswap *a_pswap, int nb_args, char **args)
+{
     size_t i;
 
     i = 0;
-    char2args = NULL;
     // Si le programme est lancé avec un seul argument, on split ce dernier
-    if (size == 1)
-        char2args = ft_split(args[0], ' ');
-    // Sinon on utilise les arguments passés en paramètre tels quels
-    else {
-        char2args = (char **) ft_calloc(char2len(args), sizeof(char *));
-        while (i < size)
-        {
-            char2args[i] = ft_strdup(args[i]);
-            i++;
-        }
-    }
-    return (char2args);
-}
-
-int *ft_extract_nbrs_from_args(int argc, char **argv)
-{
-    char **char2args;
-    int *int1args;
-    // gerer argv[1] = "1 2 3 4 5" et argv[2] = 1 =>erreur entree utilisateur
-    if (argc == 1)
-        return (NULL);
-    char2args = create_char2args(argc - 1, &argv[1]);
-    if (char2args == NULL)
-        return (NULL);
-    int1args = create_int1args(char2args);
-    free_char2(&char2args);
-    return (int1args);
+    if (nb_args == 1)
+        a_pswap->c2_args = ft_split(args[0], ' ');
+    // Sinon on copie argv dans une chaine allouee
+    else 
+        a_pswap->c2_args = char2dup(args);
+    if (!a_pswap->c2_args)
+        close_error("allocation : malloc error during arguments extraction in char2");
 }

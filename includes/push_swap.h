@@ -5,13 +5,37 @@
 # include <unistd.h> //write
 # include <stdlib.h> //malloc, free
 # include <limits.h> //INT_MAX, INT_MIN
+# include <stdbool.h> //bool
 # include <stdio.h> // printf (prohibited)
 # include "../libft/libft.h"
 // structure des nodes de la stack 
 // prev permet de remonter la stack en sens inverse mais n'est peut etre pas nécessaire.
+
+# define UP 0
+# define DOWN 1
+
+typedef struct s_mvset
+{
+    size_t      nb_moves;
+    bool        way_st1;
+    size_t      mv_st1;
+    bool        way_st2;
+    size_t      mv_st2;
+}   t_mvset;
+
+// typedef struct s_pmoves
+// {
+//     ssize_t     c_up;
+//     ssize_t     c_down;
+//     ssize_t     t_up;
+//     ssize_t     t_down;
+// }   t_nbrmoves;
+
 typedef struct s_stelem
 {
     int data;
+    size_t          pos;
+    size_t          target_pos;
     struct s_stelem *prev;
     struct s_stelem *next;
 }   t_stelem;
@@ -20,9 +44,9 @@ typedef struct s_stelem
 //si on veut modifier top, bottom ou size on envoie un pointeur vers cette structure dans la fonction.
 typedef struct s_stconfig
 {
-    t_stelem *top; 
-    t_stelem *bot;
-    size_t  size;
+    t_stelem    *top; 
+    t_stelem    *bot;
+    size_t      size;
 }   t_stconfig;
 
 typedef struct s_pswap

@@ -1,27 +1,33 @@
 SRCS	=	srcs/main.c\
 			srcs/misc.c\
-			srcs/push_swap.c\
-			srcs/manage_stelems.c\
+			srcs/manage_stelem.c\
 			srcs/manage_errors.c\
-			srcs/create_stack.c\
 			srcs/process_args.c\
+			srcs/sorting_algo.c\
 			srcs/stack_operations.c\
 			srcs/stack_utils.c\
+			# srcs/create_stack.c\
+			# srcs/push_swap.c\
 
 OBJS	=	$(SRCS:%.c=%.o)
 
 CC		=	gcc
 
-INC		=	-I./includes
+INC		=	-I ./includes
 
 FLAGS	=	-Wall -Wextra -Werror -g3
 
 NAME	=	push_swap
 
+#faire en sorte que si le fichiers .c ou .o de la libft ou si libft.a n' existe pas 
+LIB		=	-L ./libft -l ft
+
 %.o	:		%.c $(INC)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) $(INC) $(LIB)-c $< -o $@
+
 $(NAME)	:	$(OBJS)
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	make -C ./libft
+	$(CC) $(FLAGS) $(INC) $(OBJS) -o $(NAME) $(LIB)
 
 all		:		$(NAME)
 

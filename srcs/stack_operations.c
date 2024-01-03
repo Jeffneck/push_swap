@@ -1,5 +1,4 @@
 #include "../includes/push_swap.h"
-#include "../includes/libft/libft.h"
 
 /*operations on stack using operation manager that works with 
 two separated t_stconfig 
@@ -10,109 +9,114 @@ the operation is treated in 2 times
 
 
 // commandes sa, sb et ss
-void    swap_top_stack(t_stconfig *st)
+void    swap_top_stack(t_stconfig *st) //faire des retours d' erreurs pour close en cas d'operation inadequate (utile  pour checker ?)
 {
-    t_stelem *original_first;
-    t_stelem *original_second;
+    printf("swap_top_stack\n");
+    t_stelem tmp;
+    t_stelem *el1; 
+    t_stelem *el2; 
 
-    if (st->top == NULL || st->top == st->bottom)
+    // ft_display_stack(st); // test
+    el1 = st->top;
+    el2 = el1->next; //segfault ici
+    ft_memcpy(&tmp, el2, sizeof(t_stelem));
+    //erreurs pour le checker
+    if (st->top == NULL || st->top == st->bot)
         return;
-    original_first = st->top; 
-    original_second = original_first->next;
+    el2->next = el1;
+    el2->prev = NULL;
+    el1->next = tmp.next;
+    el1->prev = el2;
 
-    //2eme node remplace le 1er
-    st->top = (st->top)->next;
-    //on met à jour les pointeurs next et prev du nouveau first node
-    (st->top)->next = original_first;
-    (st->top)->prev = NULL;
-
-    //on met à jour les pointeurs next et prev du nouveau second node
-    ((st->top)->next)->next = original_second->next; 
-    ((st->top)->next)->prev = original_second;
+    st->top = el2;
+    if(st->size == 2)
+        st->bot = el1;
 }
 
-// the top element of st_src is popped from st_src and then puhed on the top of st_dest
 void    push_st1_to_st2(t_stconfig *st1, t_stconfig *st2)
 {
-    t_stelem *original_top_st2; 
-    t_stelem *original_top_st1;
+    printf("push_st1_to_st2\n");
+    t_stelem *top_s1; 
+    t_stelem *top_s2; 
+    t_stelem *next_s1; 
 
-    original_top_st2 = st2->top;
-    original_top_st1 = st1->top;
-
-    if (!st1 || !st2)
-        return; //erreur car une stack n'existe pas ?
-    if (!st1->top)
+    top_s1 = st1->top;
+    next_s1 = top_s1->next;
+    top_s2 = st2->top;
+    //erreurs pour le checker
+    if (!top_s1)
         return; //erreur car push impossible ?
-    
-    //push du top node srcs sur st2
-    st2->top = original_top_st1; 
-    (st2->top)->next = original_top_st2;
-    (st2->top)->prev = NULL;
+    st2->top = top_s1;
+    top_s1->next = top_s2;
+    if (!top_s2)
+        st2->bot = top_s1;
+    else
+        top_s2->prev = top_s1;
     st2->size++;
 
-    //pop du top node sur st1
-    st1->top = original_top_st1->next;
-    if (st1->top)
-        (st1->top)->prev = NULL;
+    st1->top = next_s1;
+    if (next_s1)
+        next_s1->prev = NULL;
     st1->size--;
-}
-
-void    rotate_st(t_stconfig *st)
-{
-    t_stelem *original_top; 
-    t_stelem *original_bot;
-
-    original_top = st->top; 
-    original_bot = st->bottom;
-
-    if (!st)
-        return; //erreur car une stack n'existe pas ?
-    if (!st->top || st->top == st->bottom)
-        return; // inutile de rotate si stack vide ou 1 seul elem.
-    
-    //pop top node
-    st->top = original_top->next;
-    (st->top)->prev = NULL;
-
-    //push back top node
-    st->bottom = original_top; 
-    (st->bottom)->next = NULL;
-    (st->bottom)->prev = original_bot;
 }
 
 void    reverse_rotate_st(t_stconfig *st)
 {
-    t_stelem *original_top; 
-    t_stelem *original_bot; 
-    t_stelem *original_prev_bot;
+    printf("rotate_st\n");
+    t_stelem *top; 
+    t_stelem *bot;
+    t_stelem *prev_bot;
 
-    original_top = st->top; 
-    original_bot = st->bottom;
-    original_prev_bot = (st->bottom)->prev; 
-
+    top = st->top; 
+    bot = st->bot;
+    prev_bot = bot->prev;
+    //erreurs pour le checker :
     if (!st)
         return; //erreur car une stack n'existe pas ?
-    if (!st->top || st->top == st->bottom)
+    if (st->size < 2)
         return; // inutile de rotate si stack vide ou 1 seul elem.
-    
-    //make new top node
-    st->top = original_bot;
-    (st->top)->next = original_top;
-    (st->top)->prev = NULL;
+    bot->prev = NULL;
+    bot->next = top;
+    top->prev = bot;
+    prev_bot->next = NULL;
+    st->top = bot;
+    st->bot = prev_bot;
+}
 
-    //make new bottom node
-    st->bottom = original_prev_bot; 
-    (st->bottom)->next = NULL;
+void    rotate_st(t_stconfig *st)
+{
+    printf("rotate_st\n");
+    t_stelem *top; 
+    t_stelem *top_next;
+    t_stelem *bot;
+
+    top = st->top; 
+    top_next = top->next;
+    bot = st->bot;
+    
+    //erreurs pour le checker :
+    if (!st)
+        return; //erreur car une stack n'existe pas ?
+    if (st->size < 2)
+        return; // inutile de rotate si stack vide ou 1 seul elem.
+    top_next->prev = NULL;
+    bot->next = top;
+    top->next = NULL;
+    top->prev = bot;
+    st->top = top_next;
+    st->bot = top;
 }
 
 void    swap_manager(t_stconfig *stA, t_stconfig *stB, char *operation)
 {
-    if (ft_strcmp(operation, "sa"))
+    printf("swap_manager str = %s\n", operation);
+    ft_display_stack(stA); // test
+    
+    if (ft_strcmp(operation, "sa") == 0)
         swap_top_stack(stA);
-    else if (ft_strcmp(operation, "sb"))
+    else if (ft_strcmp(operation, "sb") == 0)
         swap_top_stack(stB);
-    else if (ft_strcmp(operation, "ss"))
+    else if (ft_strcmp(operation, "ss") == 0)
     {
         swap_top_stack(stA);
         swap_top_stack(stB);
@@ -150,8 +154,10 @@ void    reverse_rotate_manager(t_stconfig *stA, t_stconfig *stB, char *operation
     }
 }
 
+//pour le checker ?
 int     operation_exists (char *operation)
 {
+    printf("operation_exists\n");
     char *valid_operations[] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"};
     size_t num_valid_operations;
     size_t i; 
@@ -169,16 +175,25 @@ int     operation_exists (char *operation)
     }
     return 0; // Aucune opération valide trouvée
 }
-int    operation_manager(t_stconfig *stA, t_stconfig *stB, char **operations)
+
+void    operations_manager(t_pswap *a_pswap, t_stconfig *stA, t_stconfig *stB, char *str_ops)
 {
-    size_t i;
+    printf("operations_manager\n");
+    size_t  i;
+    char    **operations;
 
     i = 0;
+    ft_display_stack(stA); // test
+    // ft_display_stack(stB); // test
+
+    operations = ft_split(str_ops, ',');
+    if (!operations)
+        close_error(a_pswap, "allocation : malloc error during split\n");
     while(operations[i])
     {
-        if (!operation_exists(operations[i]))
-            return (0);
-        else if (operations[i][0] == 's')
+        if (!operation_exists(operations[i])) // que pour le checker ou laisser quand meme ?
+            close_error(a_pswap, "sorting : at least one operation used does not exist\n");
+        if (operations[i][0] == 's')
             swap_manager(stA, stB, operations[i]);
         else if (operations[i][0] == 'p')
             push_manager(stA, stB, operations[i]);
@@ -186,7 +201,7 @@ int    operation_manager(t_stconfig *stA, t_stconfig *stB, char **operations)
             rotate_manager(stA, stB, operations[i]);
         else
             reverse_rotate_manager(stA, stB, operations[i]);
-        printf("%s\n", operations[i]); //affichage de l'operation
+        ft_printf("%s\n", operations[i]); //affichage de l'operation
+        i++;
     }
-    return (1);
 }    

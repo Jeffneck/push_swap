@@ -1,5 +1,4 @@
 #include "../includes/push_swap.h"
-#include "../includes/libft/libft.h"
 
 /*
 Concept : tri par insertion amélioré

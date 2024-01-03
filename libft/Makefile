@@ -23,9 +23,11 @@ SRCS	=	\
 			mem/ft_memmove.c\
 			\
 			nbr/ft_atoi.c\
+			nbr/ft_atol.c\
 			nbr/ft_itoa.c\
 			\
 			others/ft_isprint.c\
+			others/ft_isspace.c\
 			others/ft_isdigit.c\
 			others/ft_isalnum.c\
 			others/ft_isalpha.c\
@@ -76,6 +78,7 @@ RM	= rm -rf
 
 ${NAME}:	${OBJS}
 		@ar rc ${NAME} ${OBJS}
+		@mkdir -p obj
 		@mv ${OBJS} obj/
 
 all:	${NAME}

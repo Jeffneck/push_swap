@@ -52,24 +52,34 @@ t_stconfig *ft_init_stack_config(void);
 void    verify_format(t_pswap *a_pswap, size_t nb_args, char **args);
 void    extract_args(t_pswap *a_pswap, int nb_args, char **args);
 
-//STACK_OPERATIONS.c
-int    operation_manager(t_stconfig *stA, t_stconfig *stB, char **operations);
-
 //MISC.C
+void    free_stack(t_stconfig *st);
 void	free_char2(char ***a_char2);
 size_t	char2len(char **char2);
-char *char2dup(char **char2);
+char **char2dup(char **char2);
 int ft_issign(char c);
 
 //MANAGE_ERRORS.C
 int exit_error(char *strerr);
 void    close_error(t_pswap *a_pswap, char *strerr);
 
-// //STACK_UTILS.c
-// int pos_min_stack(t_stconfig st);
-// int pos_max_stack(t_stconfig st);
-// int min_in_stack(t_stconfig st);
-// int max_in_stack(t_stconfig st);
+//MANAGE_STELEMS.C
+t_stelem *create_stelem(int data);
+void    stack_push_front(t_pswap *a_pswap, t_stconfig *st, int data);
+void    ft_display_stack(t_stconfig *st);
+
+//SORTING_ALGO.C
+void    sort_stack(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb);
+
+//STACK_OPERATIONS.c
+void    operations_manager(t_pswap *a_pswap, t_stconfig *stA, t_stconfig *stB, char *str_ops);
+
+//STACK_UTILS.c
+int pos_min_stack(t_stconfig st);
+int pos_max_stack(t_stconfig st);
+int min_in_stack(t_stconfig st);
+int max_in_stack(t_stconfig st);
+
 // //PUSH_SWAP.c
 // void    algo_3_stack(t_stconfig *stA, t_stconfig *stB);
 // void    algo_5_stack(t_stconfig *stA, t_stconfig *stB);

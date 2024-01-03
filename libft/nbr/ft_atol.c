@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gemartel <gemartel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hanglade <hanglade@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:19:21 by gemartel          #+#    #+#             */
-/*   Updated: 2023/12/08 13:24:36 by gemartel         ###   ########.fr       */
+/*   Updated: 2024/01/02 18:35:39 by hanglade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ long	ft_atol(const char *s)
 	}
 	while (ft_isdigit(s[i]))
 	{
-		result = result * 10 + (s[i] - 0);
+		result = result * 10 + (s[i] - '0');
 		i++;
 	}
 	return (result * sign);

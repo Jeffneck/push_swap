@@ -1,5 +1,4 @@
 #include "../includes/push_swap.h"
-#include "../includes/libft/libft.h"
 
 int pos_min_stack(t_stconfig st)
 {

@@ -45,11 +45,11 @@ void    ft_display_stack(t_stconfig *st)
     current = st->top; 
     while(current)
     {
-        printf("%u: %u\n", i, current->data);
+        printf("%lu: %d\n", i, current->data);
         current = current->next;
         i++;
     }
-    printf("size in stconfig = %u, real size = %u \n", st->size, i);
+    printf("size in stconfig = %lu, real size = %lu \n", st->size, i);
 }
 
 

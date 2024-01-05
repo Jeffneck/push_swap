@@ -1,6 +1,6 @@
 #include "../includes/push_swap.h"
 
-void    algo_3_stack(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb)
+void    algo_3_stack(t_pswap *a_pswap, t_stconfig *sta)
 {
     //trouver la position de max et min puis faire les op correspondantes
     printf("algo_3_stack\n");
@@ -15,71 +15,24 @@ void    algo_3_stack(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb)
         if (pos_max == 2)
             return; 
         else
-            operations_manager(a_pswap, sta, stb, "sa,ra");
+            operations_manager(a_pswap, sta, a_pswap->stb, "sa,ra");
     }
     else if (pos_max == 0)
     {
         if (pos_min == 1)
-            operations_manager(a_pswap, sta, stb, "ra");
+            operations_manager(a_pswap, sta, a_pswap->stb, "ra");
         else
-            operations_manager(a_pswap, sta, stb, "sa,rra");
+            operations_manager(a_pswap, sta, a_pswap->stb, "sa,rra");
     }
     else 
     {
         if (pos_min == 1)
-            operations_manager(a_pswap, sta, stb, "sa");
+            operations_manager(a_pswap, sta, a_pswap->stb, "sa");
         else
-            operations_manager(a_pswap, sta, stb, "rra");
+            operations_manager(a_pswap, sta, a_pswap->stb, "rra");
     }
     
 }
-
-// int     find_closest_smaller(int obj, t_stconfig st_target)
-// {
-//     t_stelem    *curr;
-//     int         target;
-//     int         found;
-
-//     curr = st_target.top;
-//     target = INT_MIN;
-//     found = 0;
-//     while(curr)
-//     {
-//         if (curr->data > target && curr->data < obj)
-//         {
-//             target = curr->data;
-//             found = 1;
-//         }
-//         curr = curr->next;
-//     }
-//     if (!found)
-//         target = max_in_stack(st_target);
-//     return (target);
-// }
-
-//pas sur que l'algo soit bon
-// int     find_closest_bigger(int obj, t_stconfig st_target)
-// {
-//     t_stelem    *curr;
-//     int         target;
-//     int         found;
-
-//     curr = st_target.top;
-//     target = INT_MIN;
-//     found = 0;
-//     while(curr)
-//     {
-//         if (curr->data > target && curr->data > obj)
-//         {
-//             target = curr->data;
-//             found = 1;
-//         }
-//         curr = curr->next;
-//     }
-//     if (!found)
-//         target = min_in_stack(st_target);
-//     return (target);
-// }
 
 size_t  closest_smaller_pos(int obj, t_stconfig st_target)
 {
@@ -156,107 +109,137 @@ void	update_pos_and_target(t_stelem *el, t_stconfig st2, bool mode)
     }
 }
 
-t_mvset    find_cheapest_moveset(t_pswap *a_pswap, t_stconfig *st1, t_stconfig *st2)
+t_mvset    find_elem_cheapest_moveset(t_stelem el, t_stinfo info_st1, t_stinfo info_st2)
 {
-    t_stelem *el;
-    t_mvset cheapest;
     size_t  nb_moves;
-    size_t    median_st1;
-    size_t    median_st2;
 
-    el = st1->top;
-    median_st1 = st1->size / 2;
-    median_st2 = st2->size / 2;
-    while(el)
+    if (el.pos < info_st1.median && el.target_pos < info_st2.median)
     {
-        nb_moves = max_value(el->pos, el->target_pos, sizeof(size_t));
-        cheapest = (t_mvset) {nb_moves, UP, el->pos, UP, el->target_pos};
-        nb_moves = max_value((st1->size - el->pos), (st2->size - el->target_pos), sizeof(size_t)); //valider
-        if (nb_moves < cheapest.nb_moves && el->pos > median_st1 && el->target_pos > median_st2)
-            cheapest = (t_mvset) {nb_moves, DOWN, (st1->size - el->pos), DOWN, (st2->size - el->target_pos)};
-        nb_moves = el->pos + (st2->size - el->target_pos);
-        if (nb_moves < cheapest.nb_moves && el->pos < median_st1 && el->target_pos > median_st2)
-            cheapest = (t_mvset) {nb_moves, UP, el->pos, DOWN, (st2->size - el->target_pos)};
-        nb_moves = (st1->size - el->pos) + el->target_pos;
-        if (nb_moves < cheapest.nb_moves)
-            cheapest = (t_mvset) {nb_moves, UP, (st1->size - el->pos), UP, el->target_pos};
-        el = el->next;
+        nb_moves = max_value(el.pos, el.target_pos, sizeof(size_t));
+        return ((t_mvset) {nb_moves, el.pos, el.target_pos});
     }
-    return(cheapest);
-}
-void    apply_mutual_moves(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, t_mvset *mvset)
-{
-    if(mvset->way_st1 == UP)
+    else if (el.pos > info_st1.median && el.target_pos > info_st2.median)
     {
-        while(mvset->mv_st1 > 0 && mvset->mv_st1 > 0)
-        {
-            operations_manager(a_pswap, sta, stb, "rr");
-            mvset->mv_st1--;
-            mvset->mv_st2--;
-        }
+        nb_moves = max_value((info_st1.size - el.pos), (info_st2.size - el.target_pos), sizeof(size_t));
+        return ((t_mvset) {nb_moves, (el.pos - info_st1.size), (el.target_pos - info_st2.size)});
+    }
+    else if (el.pos < info_st1.median && el.target_pos > info_st2.median)
+    {
+        nb_moves = el.pos + (info_st2.size - el.target_pos);
+        return ((t_mvset) {nb_moves, el.pos, (info_st2.size - el.target_pos)});
     }
     else
     {
-        while(mvset->mv_st1 > 0 && mvset->mv_st1 > 0)
-        {
-            operations_manager(a_pswap, sta, stb, "rrr");
-            mvset->mv_st1--;
-            mvset->mv_st2--;
-        }
+        nb_moves= (info_st1.size - el.pos) + el.target_pos;
+        return((t_mvset) {nb_moves, (info_st1.size- el.pos), el.target_pos});
     }
 }
 
-//
-void    apply_moveset(t_pswap *a_pswap, t_stconfig *st1, t_stconfig *st2, t_mvset mvset)
+t_mvset    find_cheapest_moveset(t_pswap *a_pswap, t_stconfig *st1, t_stconfig *st2, bool mode)
 {
+    t_stelem *el;
+    t_mvset global_cheapest;
+    t_mvset tmp;
     
-    
-    
-    while (mvset.mv_st1)
+    el = st1->top;
+    while(el)
     {
-        operations_manager(a_pswap, sta, stb, "rrr"); // on ne pourra pas connaitre le sens
-        
-        mvset->mv_st1--;
+        tmp = find_elem_cheapest_moveset(*el, st1->info, st2->info);
+        if (tmp.nb_moves < global_cheapest.nb_moves)
+            global_cheapest.nb_moves = tmp.nb_moves;
+        el = el->next;
     }
+    //on fait en sorte que st1 => stA et st2 => stB
+    if (mode = 1)
+    {
+        tmp = global_cheapest;
+        global_cheapest.mv_a = tmp.mv_b;
+        global_cheapest.mv_b = tmp.mv_a;
+    }
+    return(global_cheapest);
+}
 
+int     determine_sign(ssize_t nombre)
+{
+    if (nombre > 0)
+        return 1;
+    else if (nombre < 0)
+        return -1;
+    else 
+        return 0;
+}
+
+void    apply_double_moves(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, t_mvset mvset)
+{
+    while (mvset.mv_a > 0 && mvset.mv_b > 0)
+    {
+        operations_manager(a_pswap, sta, stb, "rr");
+        mvset.mv_a--; 
+        mvset.mv_b--;
+    }
+    while (mvset.mv_a < 0 && mvset.mv_b < 0)
+    {
+        operations_manager(a_pswap, sta, stb, "rr");
+        mvset.mv_a++; 
+        mvset.mv_b++;
+    }
+}
+
+void    apply_moves(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, t_mvset mvset)
+{
+    int     step_st1;
+    int     step_st2;
+
+    step_st1 = determine_sign(mvset.mv_a);
+    step_st2 = determine_sign(mvset.mv_b);
+    
+    //mv indivs
+    apply_double_moves(a_pswap, sta, stb, mvset);
+    while (mvset.mv_a != 0)
+    {
+        if (mvset.mv_a > 0)
+            operations_manager(a_pswap, sta, stb, "ra");
+        else
+            operations_manager(a_pswap, sta, stb, "rra");
+        mvset.mv_a += step_st1; 
+
+    }
+    while (mvset.mv_b != 0)
+    {
+        if (mvset.mv_b > 0)
+            operations_manager(a_pswap, sta, stb, "rb");
+        else
+            operations_manager(a_pswap, sta, stb, "rrb");
+        mvset.mv_b += step_st2; 
     }
 }
 
 void	algo_big_stack(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb)
 {
+    
     t_mvset cheapest;
     operations_manager(a_pswap, sta, stb, "pb");
-    if(sta->size > 4)
+    if(sta->info.size > 4)
 	    operations_manager(a_pswap, sta, stb, "pb");
-    while(sta->size > 0)
+    while(sta->info.size > 3)
     {
         update_pos_and_target(sta->top, *stb, 0);
-        cheapest = find_cheapest_moveset(a_pswap, sta, stb);
-        if(mvset.way_st1 == mvset.way_st2)
-            apply_mutual_moves(a_pswap, sta, stb, &mvset);
+        cheapest = find_cheapest_moveset(a_pswap, sta, stb, 0);
+        apply_moves(a_pswap, sta, stb, cheapest);
     }
-    ////////
-    while(stb->size > 0)
+    algo_3_stack(a_pswap, sta);
+    while(stb->info.size > 0)
     {
         update_pos_and_target(stb->top, *sta, 1);
-        cheapest = find_cheapest_moveset(a_pswap, stb, sta);
-        if(mvset.way_st1 == mvset.way_st2)
-            apply_mutual_moves(a_pswap, sta, stb, &mvset);
-    }
-    
-    
-    //CHAQUE TOUR :
-    //calculer la cible de chaque node (closest smaller || max)
-    //calculer le nombre de coups necessaire pou que ch node atteigne ca cible
-
-    
-    
+        cheapest = find_cheapest_moveset(a_pswap, stb, sta, 1);
+        apply_moves(a_pswap, sta, stb, cheapest);
+    }    
 }
 
 void    sort_stack(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb)
 {
-    if (sta->size <= 3)
-        algo_3_stack(a_pswap, sta, stb);
+    if (sta->info.size <= 3)
+        algo_3_stack(a_pswap, sta);
     else
         algo_big_stack(a_pswap, sta, stb);
 }

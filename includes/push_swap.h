@@ -14,13 +14,17 @@
 # define UP 0
 # define DOWN 1
 
+typedef struct s_stinfo
+{
+    size_t      size;
+    size_t      median;
+}   t_stinfo;
+
 typedef struct s_mvset
 {
     size_t      nb_moves;
-    bool        way_st1;
-    size_t      mv_st1;
-    bool        way_st2;
-    size_t      mv_st2;
+    ssize_t      mv_a;
+    ssize_t      mv_b;
 }   t_mvset;
 
 // typedef struct s_pmoves
@@ -46,7 +50,8 @@ typedef struct s_stconfig
 {
     t_stelem    *top; 
     t_stelem    *bot;
-    size_t      size;
+    t_stinfo   info;
+
 }   t_stconfig;
 
 typedef struct s_pswap

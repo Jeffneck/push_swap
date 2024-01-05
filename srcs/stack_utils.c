@@ -49,6 +49,7 @@ int pos_max_stack(t_stconfig st)
     }
     return (pos_max);
 }
+
 int min_in_stack(t_stconfig st)
 {
     t_stelem *current;

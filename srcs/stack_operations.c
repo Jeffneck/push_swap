@@ -29,8 +29,16 @@ void    swap_top_stack(t_stconfig *st) //faire des retours d' erreurs pour close
     el1->prev = el2;
 
     st->top = el2;
-    if(st->size == 2)
+    if(st->info.size == 2)
         st->bot = el1;
+}
+
+void    update_stinfo(t_stconfig *st1, t_stconfig *st2)
+{
+    st1->info.size--;
+    st1->info.median = (st1->info.size) / 2;
+    st2->info.size++;
+    st2->info.median = (st2->info.size) / 2;
 }
 
 void    push_st1_to_st2(t_stconfig *st1, t_stconfig *st2)
@@ -52,12 +60,11 @@ void    push_st1_to_st2(t_stconfig *st1, t_stconfig *st2)
         st2->bot = top_s1;
     else
         top_s2->prev = top_s1;
-    st2->size++;
 
     st1->top = next_s1;
     if (next_s1)
         next_s1->prev = NULL;
-    st1->size--;
+    update_stinfo(st1, st2);
 }
 
 void    reverse_rotate_st(t_stconfig *st)
@@ -73,7 +80,7 @@ void    reverse_rotate_st(t_stconfig *st)
     //erreurs pour le checker :
     if (!st)
         return; //erreur car une stack n'existe pas ?
-    if (st->size < 2)
+    if (st->info.size < 2)
         return; // inutile de rotate si stack vide ou 1 seul elem.
     bot->prev = NULL;
     bot->next = top;
@@ -97,7 +104,7 @@ void    rotate_st(t_stconfig *st)
     //erreurs pour le checker :
     if (!st)
         return; //erreur car une stack n'existe pas ?
-    if (st->size < 2)
+    if (st->info.size < 2)
         return; // inutile de rotate si stack vide ou 1 seul elem.
     top_next->prev = NULL;
     bot->next = top;

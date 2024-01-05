@@ -36,6 +36,7 @@ void    fill_stack_a(t_pswap *a_pswap)
 
 int    main(int argc, char **argv)
 {
+    //ajouter une erreur si stack trop grande > ssize_t (notre prog pourra pas gerer )
     t_pswap pswap;
     char **char2args;
     ft_bzero(&pswap, sizeof(t_pswap)); // utile?

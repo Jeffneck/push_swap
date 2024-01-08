@@ -183,32 +183,42 @@ int     operation_exists (char *operation)
     return 0; // Aucune opération valide trouvée
 }
 
-void    operations_manager(t_pswap *a_pswap, t_stconfig *stA, t_stconfig *stB, char *str_ops)
+void    operations_manager(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, char *str_ops)
 {
     printf("operations_manager\n");
     size_t  i;
     char    **operations;
 
     i = 0;
-    ft_display_stack(stA); // test
-    // ft_display_stack(stB); // test
+    ft_printf("BEFORE STACK A *******************************\n");//
+    ft_display_stack(sta); // test
+    ft_printf("BEFORE STACK B *******************************\n");//
+    ft_display_stack(stb); // test
 
     operations = ft_split(str_ops, ',');
+    a_pswap->curr_operations = operations;
     if (!operations)
         close_error(a_pswap, "allocation : malloc error during split\n");
     while(operations[i])
     {
+        sleep(3);//
         if (!operation_exists(operations[i])) // que pour le checker ou laisser quand meme ?
             close_error(a_pswap, "sorting : at least one operation used does not exist\n");
         if (operations[i][0] == 's')
-            swap_manager(stA, stB, operations[i]);
+            swap_manager(sta, stb, operations[i]);
         else if (operations[i][0] == 'p')
-            push_manager(stA, stB, operations[i]);
+            push_manager(sta, stb, operations[i]);
         else if (operations[i][0] == 'r' && ft_strlen(operations[i]) == 2)
-            rotate_manager(stA, stB, operations[i]);
+            rotate_manager(sta, stb, operations[i]);
         else
-            reverse_rotate_manager(stA, stB, operations[i]);
+            reverse_rotate_manager(sta, stb, operations[i]);
         ft_printf("%s\n", operations[i]); //affichage de l'operation
         i++;
     }
+    free_char2(&(a_pswap->curr_operations));
+    a_pswap->curr_operations = NULL;
+    ft_printf("AFTER STACK A *******************************\n");//
+    ft_display_stack(sta); // test
+    ft_printf("AFTER STACK B *******************************\n");//
+    ft_display_stack(stb); // test
 }    

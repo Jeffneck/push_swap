@@ -10,6 +10,8 @@ t_stelem *create_stelem(int data)
     if (!new_elem)
         return (NULL);
     new_elem->data = data;
+    new_elem->pos = 0; 
+    new_elem->target_pos = 0;
     new_elem->prev = NULL;
     new_elem->next = NULL;
     return (new_elem);
@@ -31,27 +33,26 @@ void    stack_push_front(t_pswap *a_pswap, t_stconfig *st, int data)
         (st->top)->prev = new_elem;
     }
     st->top = new_elem;
-    st->size++;
+    st->info.size++;
 }
 
 
 void    ft_display_stack(t_stconfig *st)
 {
     printf("ft_display_stack \n");
-    t_stelem *current; 
-    size_t  i; 
+    t_stelem *curr; 
+    int  i; 
 
     i = 0;
-    current = st->top; 
-    while(current)
+    curr = st->top; 
+    while(curr)
     {
-        printf("%lu: %d\n", i, current->data);
-        current = current->next;
+        printf("%d: data=%d pos=%d target_pos=%d\n", i, curr->data, curr->pos, curr->target_pos);
+        curr = curr->next;
         i++;
     }
-    printf("size in stconfig = %lu, real size = %lu \n", st->size, i);
+    printf("size in stconfig = %d, real size = %d \n", st->info.size, i);
 }
-
 
 // int main ()
 // {

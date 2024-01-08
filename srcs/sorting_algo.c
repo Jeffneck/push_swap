@@ -3,7 +3,7 @@
 void    algo_3_stack(t_pswap *a_pswap, t_stconfig *sta)
 {
     //trouver la position de max et min puis faire les op correspondantes
-    printf("algo_3_stack\n");
+    ft_printf("algo_3_stack\n");
     
     size_t pos_min; 
     size_t pos_max;
@@ -34,11 +34,13 @@ void    algo_3_stack(t_pswap *a_pswap, t_stconfig *sta)
     
 }
 
-size_t  closest_smaller_pos(int obj, t_stconfig st_target)
+int  closest_smaller_pos(int obj, t_stconfig st_target)
 {
+    ft_printf("closest_smaller_pos\n");
+    
     t_stelem    *curr;
-    size_t      target_pos;
-    size_t      i;
+    int      target_pos;
+    int      i;
     int      target;
     int         found;
 
@@ -63,11 +65,13 @@ size_t  closest_smaller_pos(int obj, t_stconfig st_target)
     return (target_pos);
 }
 
-size_t  closest_bigger_pos(int obj, t_stconfig st_target)
+int  closest_bigger_pos(int obj, t_stconfig st_target)
 {
+    //erreur la dedans
+    ft_printf("closest_bigger_pos\n");
     t_stelem    *curr;
-    size_t      target_pos;
-    size_t      i;
+    int      target_pos;
+    int      i;
     int      target;
     int         found;
 
@@ -78,7 +82,7 @@ size_t  closest_bigger_pos(int obj, t_stconfig st_target)
     found = 0;
     while(curr)
     {
-        if (curr->data < target && obj < curr->data) //verif
+        if (curr->data > target && obj < curr->data) //verif
         {
             target = curr->data;
             target_pos = i;
@@ -94,83 +98,110 @@ size_t  closest_bigger_pos(int obj, t_stconfig st_target)
 
 void	update_pos_and_target(t_stelem *el, t_stconfig st2, bool mode)
 {
-    size_t      pos;
+    ft_printf("update_pos_and_target\n");
+    int      pos;
 
     pos = 0;
-    while(!el)
+    while(el)
     {
         el->pos = pos;
-        if(mode = 0)
+        if(mode == 0)
             el->target_pos = closest_smaller_pos(el->data, st2);
         else
             el->target_pos = closest_bigger_pos(el->data, st2);
         pos++;
+        ft_printf("eldata = %d, elpos = %d, eltargetpos = %d\n", el->data, el->pos, el->target_pos);
         el = el->next;
     }
+
+}
+
+void    *max_value(void *nb1, void *nb2, size_t size)
+{
+    ft_printf("max_value\n");
+    size_t  i;
+    const unsigned char   *bit_nb1;
+    const unsigned char   *bit_nb2;
+
+    if (nb1 == NULL || nb2 == NULL || size == 0)
+        return NULL;
+    i = size - 1;
+    bit_nb1 = (unsigned char *) nb1;
+    bit_nb2 = (unsigned char *) nb2;
+    while (i > 0)
+    {
+        if (bit_nb1[i] > bit_nb2[i])
+            return (nb1);
+        else if (bit_nb2[i] > bit_nb1[i])
+            return (nb2);
+        i--;
+    }
+    return (nb1);
 }
 
 t_mvset    find_elem_cheapest_moveset(t_stelem el, t_stinfo info_st1, t_stinfo info_st2)
 {
-    size_t  nb_moves;
+    ft_printf("find_elem_cheapest_moveset\n");
+    int  nb_moves;
+    int  el_moves;
+    int  target_moves;
 
-    if (el.pos < info_st1.median && el.target_pos < info_st2.median)
-    {
-        nb_moves = max_value(el.pos, el.target_pos, sizeof(size_t));
-        return ((t_mvset) {nb_moves, el.pos, el.target_pos});
-    }
-    else if (el.pos > info_st1.median && el.target_pos > info_st2.median)
-    {
-        nb_moves = max_value((info_st1.size - el.pos), (info_st2.size - el.target_pos), sizeof(size_t));
-        return ((t_mvset) {nb_moves, (el.pos - info_st1.size), (el.target_pos - info_st2.size)});
-    }
-    else if (el.pos < info_st1.median && el.target_pos > info_st2.median)
-    {
-        nb_moves = el.pos + (info_st2.size - el.target_pos);
-        return ((t_mvset) {nb_moves, el.pos, (info_st2.size - el.target_pos)});
-    }
-    else
-    {
-        nb_moves= (info_st1.size - el.pos) + el.target_pos;
-        return((t_mvset) {nb_moves, (info_st1.size- el.pos), el.target_pos});
-    }
+    el_moves = el.pos;
+    if (el.pos > info_st1.median)
+        el_moves = el.pos - info_st1.size;
+
+    target_moves = el.target_pos;
+    if (el.target_pos > info_st2.median)
+        target_moves = el.target_pos - info_st2.size;
+
+    nb_moves = el_moves + target_moves;
+    if ((el_moves > 0 && target_moves > 0) || (el_moves < 0 && target_moves < 0))
+        nb_moves = *((int *)max_value(&(el_moves), &(target_moves), sizeof(int)));
+    printf("Elem MOVESET : El.data=%d El.pos :%d el.target_pos=%d nb_moves : %d  MV A : %d MV B : %d\n", el.data, el.pos, el.target_pos, nb_moves, el_moves, target_moves);
+    return ((t_mvset) {nb_moves, el_moves, target_moves});
 }
 
 t_mvset    find_cheapest_moveset(t_pswap *a_pswap, t_stconfig *st1, t_stconfig *st2, bool mode)
 {
+    ft_printf("find_cheapest_moveset\n");
     t_stelem *el;
     t_mvset global_cheapest;
     t_mvset tmp;
     
     el = st1->top;
+    global_cheapest = (t_mvset) {INT_MAX, INT_MAX, INT_MAX};
     while(el)
     {
         tmp = find_elem_cheapest_moveset(*el, st1->info, st2->info);
-        if (tmp.nb_moves < global_cheapest.nb_moves)
-            global_cheapest.nb_moves = tmp.nb_moves;
+        printf("SIZE ST1 = %d MEDIAN1 = %d SIZE ST2 = %d MEDIAN2 = %d\n", st1->info.size, st1->info.median, st2->info.size, st2->info.median);//
+        if (abs(tmp.nb_moves) < abs(global_cheapest.nb_moves))
+            global_cheapest = tmp;
         el = el->next;
     }
     //on fait en sorte que st1 => stA et st2 => stB
-    if (mode = 1)
+    if (mode == 1)
     {
         tmp = global_cheapest;
         global_cheapest.mv_a = tmp.mv_b;
         global_cheapest.mv_b = tmp.mv_a;
     }
+    printf("CHEAPEST MOVESET : NB_MOVES=%d  MV_A=%d MV_B=%d\n", global_cheapest.nb_moves, global_cheapest.mv_a, global_cheapest.mv_b);
     return(global_cheapest);
 }
 
-int     determine_sign(ssize_t nombre)
+int     determine_step(ssize_t nombre)
 {
     if (nombre > 0)
-        return 1;
-    else if (nombre < 0)
         return -1;
+    else if (nombre < 0)
+        return 1;
     else 
         return 0;
 }
 
 void    apply_double_moves(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, t_mvset mvset)
 {
+    ft_printf("apply_double_moves\n");
     while (mvset.mv_a > 0 && mvset.mv_b > 0)
     {
         operations_manager(a_pswap, sta, stb, "rr");
@@ -187,14 +218,15 @@ void    apply_double_moves(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, t
 
 void    apply_moves(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, t_mvset mvset)
 {
+    ft_printf("apply_moves\n");
     int     step_st1;
     int     step_st2;
 
-    step_st1 = determine_sign(mvset.mv_a);
-    step_st2 = determine_sign(mvset.mv_b);
+    step_st1 = determine_step(mvset.mv_a);
+    step_st2 = determine_step(mvset.mv_b);
     
-    //mv indivs
     apply_double_moves(a_pswap, sta, stb, mvset);
+    //mv indivs
     while (mvset.mv_a != 0)
     {
         if (mvset.mv_a > 0)
@@ -206,6 +238,7 @@ void    apply_moves(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, t_mvset 
     }
     while (mvset.mv_b != 0)
     {
+        printf("MOVES RESTANTS = %d", mvset.mv_b);
         if (mvset.mv_b > 0)
             operations_manager(a_pswap, sta, stb, "rb");
         else
@@ -217,27 +250,37 @@ void    apply_moves(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, t_mvset 
 void	algo_big_stack(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb)
 {
     
+    ft_printf("algo_big_stack\n");
     t_mvset cheapest;
+    // ft_printf("111111111111\n");//
     operations_manager(a_pswap, sta, stb, "pb");
     if(sta->info.size > 4)
 	    operations_manager(a_pswap, sta, stb, "pb");
     while(sta->info.size > 3)
     {
+        ft_printf("///////////////STACK A => STACK B /////////////////\n");//
         update_pos_and_target(sta->top, *stb, 0);
+        ft_display_stack(sta);//
         cheapest = find_cheapest_moveset(a_pswap, sta, stb, 0);
         apply_moves(a_pswap, sta, stb, cheapest);
+        operations_manager(a_pswap, sta, stb, "pb");
+        // ft_printf("333333333333\n");//
     }
+    ft_printf("///////////////ALGO 3 /////////////////\n");//
     algo_3_stack(a_pswap, sta);
     while(stb->info.size > 0)
     {
+        ft_printf("///////////////STACK B => STACK A /////////////////\n");//
         update_pos_and_target(stb->top, *sta, 1);
         cheapest = find_cheapest_moveset(a_pswap, stb, sta, 1);
         apply_moves(a_pswap, sta, stb, cheapest);
+        operations_manager(a_pswap, sta, stb, "pa");
     }    
 }
 
 void    sort_stack(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb)
 {
+    ft_printf("sort_stack\n");
     if (sta->info.size <= 3)
         algo_3_stack(a_pswap, sta);
     else

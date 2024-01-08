@@ -16,15 +16,15 @@
 
 typedef struct s_stinfo
 {
-    size_t      size;
-    size_t      median;
+    int      size;
+    int      median;
 }   t_stinfo;
 
 typedef struct s_mvset
 {
-    size_t      nb_moves;
-    ssize_t      mv_a;
-    ssize_t      mv_b;
+    int      nb_moves;
+    int      mv_a;
+    int      mv_b;
 }   t_mvset;
 
 // typedef struct s_pmoves
@@ -37,9 +37,9 @@ typedef struct s_mvset
 
 typedef struct s_stelem
 {
-    int data;
-    size_t          pos;
-    size_t          target_pos;
+    int             data;
+    int             pos;
+    int             target_pos;
     struct s_stelem *prev;
     struct s_stelem *next;
 }   t_stelem;
@@ -50,16 +50,17 @@ typedef struct s_stconfig
 {
     t_stelem    *top; 
     t_stelem    *bot;
-    t_stinfo   info;
+    t_stinfo    info;
 
 }   t_stconfig;
 
 typedef struct s_pswap
 {
-    char    **c2_args;
-    size_t  nb_args;
-    t_stconfig *sta;
-    t_stconfig *stb;
+    char        **c2_args;
+    int         nb_args;
+    char        **curr_operations;
+    t_stconfig  *sta;
+    t_stconfig  *stb;
 } t_pswap; 
 
 //structure qui me donne des infos sur mes portions, 
@@ -78,7 +79,7 @@ t_stconfig  *ft_create_stack(char **p2_args, size_t nb_args);
 t_stconfig *ft_init_stack_config(void);
 
 //PROCESS_ARGS.c
-void    verify_format(t_pswap *a_pswap, size_t nb_args, char **args);
+void    verify_args_format(t_pswap *a_pswap, int nb_args, char **args);
 void    extract_args(t_pswap *a_pswap, int nb_args, char **args);
 
 //MISC.C

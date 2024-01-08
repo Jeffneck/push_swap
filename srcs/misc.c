@@ -3,16 +3,17 @@
 void    free_stack(t_stconfig *st)
 {
     printf("free_stack\n");
-    size_t  i;
     t_stelem    *curr;
+    t_stelem    *tmp;
 
-    i = 0;
     curr = st->top;
-    while(i < st->size)
+    while(curr)
     {
+        tmp = curr->next;
         free(curr);
-        i++;
+        curr = tmp;
     }
+    free(st);
 }
 
 //ajouter a libft
@@ -30,7 +31,6 @@ void	free_char2(char ***a_char2)
         i++;
     }
     free(char2);
-    char2 = NULL;
 }
 
 //ajouter a libft

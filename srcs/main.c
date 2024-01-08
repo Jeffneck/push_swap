@@ -11,26 +11,22 @@ void     init_stacks(t_pswap *a_pswap)
         close_error(a_pswap, "Memory : error alloc init_stack B\n");
 }
 
-void    fill_stack_a(t_pswap *a_pswap)
+void    fill_stack_a(t_pswap *a_pswap, t_stconfig *sta, char **c2_args, int nb_args)
 {
     printf("fill_stack_a\n");
-    t_stconfig *sta;
-    char        **args;
-    ssize_t     i_arg;
     long        nb;
+    int         i;
 
-    sta = a_pswap->sta;
-    args = a_pswap->c2_args;
-    i_arg = (ssize_t) a_pswap->nb_args - 1;
     nb = 0;
-    while(i_arg >= 0)
+    i = nb_args - 1;
+    while(i >= 0)
     {
-        nb = ft_atol(args[i_arg]);
-        printf(" NB = %ld\n", nb);
+        nb = ft_atol(c2_args[i]);
+        // printf(" NB = %ld\n", nb);//
         if (nb > (long)INT_MAX || nb < (long)INT_MIN)
-            close_error(a_pswap, "Arguments : at leats 1 arg is too big for an int\n");
-        stack_push_front(a_pswap, a_pswap->sta, (int) nb);
-        i_arg--;
+            close_error(a_pswap, "arguments : at leats 1 arg is too big for an int\n");
+        stack_push_front(a_pswap, a_pswap->sta, (int)nb);
+        i--;
     }
 }
 
@@ -42,16 +38,12 @@ int    main(int argc, char **argv)
     ft_bzero(&pswap, sizeof(t_pswap)); // utile?
     init_stacks(&pswap);
     if (argc < 2)
-        exit_error("Arguments : need at least 1 argument\n");
-    extract_args(&pswap, argc - 1, &argv[1]);
-    pswap.nb_args = char2len(pswap.c2_args);
-    verify_format(&pswap, pswap.nb_args, pswap.c2_args);
-    fill_stack_a(&pswap);
-    printf("BEFORE\n"); 
-    ft_display_stack(pswap.sta);
+        close_error(&pswap, "Arguments : need at least 1 argument\n");
+    extract_args(&pswap, argc, argv);
+    verify_args_format(&pswap, pswap.nb_args, pswap.c2_args);
+    fill_stack_a(&pswap, pswap.sta, pswap.c2_args, pswap.nb_args);
     sort_stack(&pswap, pswap.sta, pswap.stb);
-    printf("AFTER\n"); 
-    ft_display_stack(pswap.sta);
-    return (0);
+    close_error(&pswap, NULL);
+    return (0);// inutile puisque exit_success
 }
 

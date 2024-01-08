@@ -1,8 +1,8 @@
 #include "../includes/push_swap.h"
 
-void    verify_format(t_pswap *a_pswap, size_t nb_args, char **args)
+void    verify_args_format(t_pswap *a_pswap, int nb_args, char **args)
 {
-    printf("verify_format nb_args = %lu\n", nb_args);//
+    printf("verify_format nb_args = %d\n", nb_args);//
     size_t  i;
     size_t  j;
     int len_nbr;
@@ -12,39 +12,43 @@ void    verify_format(t_pswap *a_pswap, size_t nb_args, char **args)
     {
         len_nbr = 0;
         j= 0;
-        while(args[i][j] && ft_isspace(args[i][j])) // necess args[i][j] ?
+        while(ft_isspace(args[i][j])) // necess args[i][j] ?
             j++;
-        if (args[i][j] && ft_issign(args[i][j]))// necess args[i][j] ?
+        if (ft_issign(args[i][j]))// necess args[i][j] ?
             j++;
         while (args[i][j])
         {
             if(!ft_isdigit(args[i][j]))
-                close_error(a_pswap, "argument : bad syntax");
+                close_error(a_pswap, "arguments : bad syntax");
             if(len_nbr > 10)
-                close_error(a_pswap, "argument : at least 1 arg is too big for an int");
+                close_error(a_pswap, "arguments : at least 1 arg is too big for an int");
             len_nbr++;
             j++;
             // printf("i = %lu j = %lu\n", i, j);//
-
         }
         i++;
     }
 }
 
-void    extract_args(t_pswap *a_pswap, int nb_args, char **args)
+void    extract_args(t_pswap *a_pswap, int argc, char **argv)
 {
     printf("extract_args\n");//
     size_t i;
+    size_t  size_stack;
 
     i = 0;
     // Si le programme est lancé avec un seul argument, on split ce dernier
-    if (nb_args == 1)
-        a_pswap->c2_args = ft_split(args[0], ' ');
+    if (argc == 2)
+        a_pswap->c2_args = ft_split(argv[1], ' ');
     // Sinon on copie argv dans une chaine allouee
     else 
-        a_pswap->c2_args = char2dup(args);
+        a_pswap->c2_args = char2dup(&argv[1]);
     if (!a_pswap->c2_args)
         close_error(a_pswap, "allocation : malloc error during arguments extraction in char2");
+    size_stack = char2len(a_pswap->c2_args); 
+    if (size_stack > (size_t)INT_MAX)
+        close_error(a_pswap, "management : push_swap cannot sort more than INT_MAX arguments");
+    a_pswap->nb_args = (int) size_stack;
 }
 
 // int     *create_int1args(char **args) {

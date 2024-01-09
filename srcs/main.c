@@ -2,18 +2,18 @@
 
 void     init_stacks(t_pswap *a_pswap)
 {
-    printf("init_stack_a\n");//
-    a_pswap->sta = (t_stconfig *) ft_calloc(1, sizeof(t_stconfig));
+    // printf("init_stack_a\n");//
+    a_pswap->sta = (t_stconfig *) ft_calloc(1, sizeof(t_stconfig)); //malloc testé
     if(!a_pswap->sta)
         close_error(a_pswap, "Memory : error alloc init_stack A\n");
-    a_pswap->stb = (t_stconfig *) ft_calloc(1, sizeof(t_stconfig));
+    a_pswap->stb = (t_stconfig *) ft_calloc(1, sizeof(t_stconfig));//malloc testé
     if(!a_pswap->stb)
         close_error(a_pswap, "Memory : error alloc init_stack B\n");
 }
 
 void    fill_stack_a(t_pswap *a_pswap, t_stconfig *sta, char **c2_args, int nb_args)
 {
-    printf("fill_stack_a\n");
+    // printf("fill_stack_a\n");
     long        nb;
     int         i;
 
@@ -43,6 +43,7 @@ int    main(int argc, char **argv)
     verify_args_format(&pswap, pswap.nb_args, pswap.c2_args);
     fill_stack_a(&pswap, pswap.sta, pswap.c2_args, pswap.nb_args);
     sort_stack(&pswap, pswap.sta, pswap.stb);
+    // ft_display_stack(pswap.sta);
     close_error(&pswap, NULL);
     return (0);// inutile puisque exit_success
 }

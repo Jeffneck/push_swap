@@ -3,10 +3,10 @@
 // Remplir la liste A avec les données initiales
 t_stelem *create_stelem(int data)
 {
-    printf("ft_create_elem \n");
+    // printf("ft_create_elem \n");
     t_stelem *new_elem;
 
-    new_elem = (t_stelem*) malloc(sizeof(t_stelem));
+    new_elem = (t_stelem*) malloc(sizeof(t_stelem)); //malloc teste
     if (!new_elem)
         return (NULL);
     new_elem->data = data;
@@ -19,7 +19,7 @@ t_stelem *create_stelem(int data)
 
 void    stack_push_front(t_pswap *a_pswap, t_stconfig *st, int data)
 {
-    printf("fstack_push_front \n");
+    // printf("fstack_push_front \n");
     t_stelem *new_elem;
 
     new_elem = create_stelem(data);
@@ -30,7 +30,7 @@ void    stack_push_front(t_pswap *a_pswap, t_stconfig *st, int data)
     else 
     {
         new_elem->next = st->top;
-        (st->top)->prev = new_elem;
+        st->top->prev = new_elem;
     }
     st->top = new_elem;
     st->info.size++;
@@ -39,7 +39,7 @@ void    stack_push_front(t_pswap *a_pswap, t_stconfig *st, int data)
 
 void    ft_display_stack(t_stconfig *st)
 {
-    printf("ft_display_stack \n");
+    // printf("ft_display_stack \n");
     t_stelem *curr; 
     int  i; 
 
@@ -47,10 +47,19 @@ void    ft_display_stack(t_stconfig *st)
     curr = st->top; 
     while(curr)
     {
-        printf("%d: data=%d pos=%d target_pos=%d\n", i, curr->data, curr->pos, curr->target_pos);
+        ft_printf("%d: data=%d pos=%d target_pos=%d\n", i, curr->data, curr->pos, curr->target_pos);
         curr = curr->next;
         i++;
     }
+    // curr = st->bot;
+    // ft_printf("REVERSED LIST ++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+    // i--;
+    // while (curr)
+    // {
+    //     ft_printf("%d: data=%d pos=%d target_pos=%d\n", i, curr->data, curr->pos, curr->target_pos);
+    //     curr = curr->prev;
+    //     i--;
+    // }
     // printf("size in stconfig = %d, real size = %d \n", st->info.size, i);
 }
 

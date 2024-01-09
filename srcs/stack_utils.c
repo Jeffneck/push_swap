@@ -22,7 +22,7 @@ int pos_min_stack(t_stconfig st)
         current = current->next;
         i++; 
     }
-    ft_printf("pos min in stack is : %d\n", pos_min);
+    // ft_printf("pos min in stack is : %d\n", pos_min);
     return (pos_min);
 }
 int pos_max_stack(t_stconfig st)

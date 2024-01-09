@@ -8,7 +8,7 @@ int exit_error(char *strerr)
 
 void    close_error(t_pswap *a_pswap, char *strerr) // les elements ne peuvent pas etre mis a NULL dans les fonctions directement?
 {
-    printf("ft_close_error\n");
+    // printf("ft_close_error\n");
     // ft_printf("1\n");
     if (a_pswap->c2_args)
         free_char2(&(a_pswap->c2_args));

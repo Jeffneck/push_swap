@@ -2,7 +2,7 @@
 
 void    free_stack(t_stconfig *st)
 {
-    printf("free_stack\n");
+    // printf("free_stack\n");
     t_stelem    *curr;
     t_stelem    *tmp;
 
@@ -36,7 +36,7 @@ void	free_char2(char ***a_char2)
 //ajouter a libft
 void    ft_putchar2_endl(char **char2)
 {
-    printf("ft_putchar2_endl \n");//
+    // printf("ft_putchar2_endl \n");//
     size_t	i;
 
     i = 0;
@@ -46,8 +46,6 @@ void    ft_putchar2_endl(char **char2)
         write(1, "\n", 1);
         i++;
     }
-    printf("ft_putchar2_endl \n");//
-
 }
 
 //ajouter a libft
@@ -58,31 +56,30 @@ size_t	char2len(char **char2)
     i = 0;
     while (char2[i])
         i++;
-    printf("char2len len = %lu\n", i);//
     return (i);
 }
 
 //ajouter a libft
 char **char2dup(char **char2)
 {
-    printf("char2dup \n");//
+    // printf("char2dup \n");//
     size_t  i;
     size_t  size;
     char **char2dup;
 
     i = 0;
     size = char2len(char2) + 1;
-    char2dup = (char **) ft_calloc(size, sizeof(char *));
+    char2dup = (char **) ft_calloc(size, sizeof(char *)); //malloc testé
     if (!char2dup)
         return (NULL); 
     while (i < size - 1)
     {
-        char2dup[i] = ft_strdup(char2[i]);
+        char2dup[i] = ft_strdup(char2[i]); //malloc testé
         if (!char2dup[i])
             return(free_char2(&char2dup), NULL); 
         i++;
     }
-    ft_putchar2_endl(char2dup);//verif
+    // ft_putchar2_endl(char2dup);//verif
     return (char2dup);
 }
 

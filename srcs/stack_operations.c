@@ -11,26 +11,28 @@ the operation is treated in 2 times
 // commandes sa, sb et ss
 void    swap_top_stack(t_stconfig *st) //faire des retours d' erreurs pour close en cas d'operation inadequate (utile  pour checker ?)
 {
-    printf("swap_top_stack\n");
+    // printf("swap_top_stack\n");
     t_stelem tmp;
-    t_stelem *el1; 
-    t_stelem *el2; 
+    t_stelem *first; 
+    t_stelem *second; 
+    t_stelem *third; 
 
-    // ft_display_stack(st); // test
-    el1 = st->top;
-    el2 = el1->next; //segfault ici
-    ft_memcpy(&tmp, el2, sizeof(t_stelem));
-    //erreurs pour le checker
+    first = st->top;
+    second = first->next;
+    third = second->next;
+    ft_memcpy(&tmp, second, sizeof(t_stelem));
     if (st->top == NULL || st->top == st->bot)
         return;
-    el2->next = el1;
-    el2->prev = NULL;
-    el1->next = tmp.next;
-    el1->prev = el2;
+    second->next = first;
+    second->prev = NULL;
+    first->next = tmp.next;
+    first->prev = second;
 
-    st->top = el2;
+    st->top = second;
     if(st->info.size == 2)
-        st->bot = el1;
+        st->bot = first;
+    if (st->info.size > 2)
+        third->prev = first;
 }
 
 void    update_stinfo(t_stconfig *st1, t_stconfig *st2)
@@ -43,7 +45,7 @@ void    update_stinfo(t_stconfig *st1, t_stconfig *st2)
 
 void    push_st1_to_st2(t_stconfig *st1, t_stconfig *st2)
 {
-    printf("push_st1_to_st2\n");
+    // printf("push_st1_to_st2\n");
     t_stelem *top_s1; 
     t_stelem *top_s2; 
     t_stelem *next_s1; 
@@ -69,14 +71,15 @@ void    push_st1_to_st2(t_stconfig *st1, t_stconfig *st2)
 
 void    reverse_rotate_st(t_stconfig *st)
 {
-    printf("rotate_st\n");
+    // printf("rotate_st\n");
     t_stelem *top; 
     t_stelem *bot;
     t_stelem *prev_bot;
 
     top = st->top; 
     bot = st->bot;
-    prev_bot = bot->prev;
+    prev_bot = st->bot->prev;
+    // ft_printf("REVERSE ROTATE top=%d second = %d bot=%d //////////////\n", top->data, prev_bot->data, bot->data);
     //erreurs pour le checker :
     if (!st)
         return; //erreur car une stack n'existe pas ?
@@ -88,11 +91,12 @@ void    reverse_rotate_st(t_stconfig *st)
     prev_bot->next = NULL;
     st->top = bot;
     st->bot = prev_bot;
+    // ft_display_stack(st); 
 }
 
 void    rotate_st(t_stconfig *st)
 {
-    printf("rotate_st\n");
+    // printf("rotate_st\n");
     t_stelem *top; 
     t_stelem *top_next;
     t_stelem *bot;
@@ -116,8 +120,8 @@ void    rotate_st(t_stconfig *st)
 
 void    swap_manager(t_stconfig *stA, t_stconfig *stB, char *operation)
 {
-    printf("swap_manager str = %s\n", operation);
-    ft_display_stack(stA); // test
+    // printf("swap_manager str = %s\n", operation);
+    // ft_display_stack(stA); // test
     
     if (ft_strcmp(operation, "sa") == 0)
         swap_top_stack(stA);
@@ -164,7 +168,7 @@ void    reverse_rotate_manager(t_stconfig *stA, t_stconfig *stB, char *operation
 //pour le checker ?
 int     operation_exists (char *operation)
 {
-    printf("operation_exists\n");
+    // printf("operation_exists\n");
     char *valid_operations[] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"};
     size_t num_valid_operations;
     size_t i; 
@@ -185,17 +189,17 @@ int     operation_exists (char *operation)
 
 void    operations_manager(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, char *str_ops)
 {
-    printf("operations_manager\n");
+    // printf("operations_manager\n");
     size_t  i;
     char    **operations;
 
     i = 0;
-    ft_printf("BEFORE STACK A *******************************\n");//
-    ft_display_stack(sta); // test
-    ft_printf("BEFORE STACK B *******************************\n");//
-    ft_display_stack(stb); // test
+    // ft_printf("BEFORE STACK A *******************************\n");//
+    // ft_display_stack(sta); // test
+    // ft_printf("BEFORE STACK B *******************************\n");//
+    // ft_display_stack(stb); // test
 
-    operations = ft_split(str_ops, ',');
+    operations = ft_split(str_ops, ','); //malloc teste
     a_pswap->curr_operations = operations;
     if (!operations)
         close_error(a_pswap, "allocation : malloc error during split\n");
@@ -221,4 +225,5 @@ void    operations_manager(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, c
     ft_display_stack(sta); // test
     ft_printf("AFTER STACK B *******************************\n");//
     ft_display_stack(stb); // test
+    ft_printf("\n\n\n\n");//
 }    

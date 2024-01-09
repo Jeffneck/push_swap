@@ -2,7 +2,7 @@
 
 void    verify_args_format(t_pswap *a_pswap, int nb_args, char **args)
 {
-    printf("verify_format nb_args = %d\n", nb_args);//
+    // printf("verify_format nb_args = %d\n", nb_args);//
     size_t  i;
     size_t  j;
     int len_nbr;
@@ -32,14 +32,14 @@ void    verify_args_format(t_pswap *a_pswap, int nb_args, char **args)
 
 void    extract_args(t_pswap *a_pswap, int argc, char **argv)
 {
-    printf("extract_args\n");//
+    // printf("extract_args\n");//
     size_t i;
     size_t  size_stack;
 
     i = 0;
     // Si le programme est lancé avec un seul argument, on split ce dernier
     if (argc == 2)
-        a_pswap->c2_args = ft_split(argv[1], ' ');
+        a_pswap->c2_args = ft_split(argv[1], ' '); //malloc testé
     // Sinon on copie argv dans une chaine allouee
     else 
         a_pswap->c2_args = char2dup(&argv[1]);

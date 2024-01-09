@@ -51,7 +51,7 @@ void    ft_display_stack(t_stconfig *st)
         curr = curr->next;
         i++;
     }
-    printf("size in stconfig = %d, real size = %d \n", st->info.size, i);
+    // printf("size in stconfig = %d, real size = %d \n", st->info.size, i);
 }
 
 // int main ()

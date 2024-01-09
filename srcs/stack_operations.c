@@ -201,7 +201,7 @@ void    operations_manager(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, c
         close_error(a_pswap, "allocation : malloc error during split\n");
     while(operations[i])
     {
-        sleep(3);//
+        // sleep(3);//
         if (!operation_exists(operations[i])) // que pour le checker ou laisser quand meme ?
             close_error(a_pswap, "sorting : at least one operation used does not exist\n");
         if (operations[i][0] == 's')

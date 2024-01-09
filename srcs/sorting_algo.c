@@ -76,13 +76,13 @@ int  closest_bigger_pos(int obj, t_stconfig st_target)
     int         found;
 
     curr = st_target.top;
-    target = INT_MIN;
+    target = INT_MAX;
     target_pos = 0;
     i = 0;
     found = 0;
     while(curr)
     {
-        if (curr->data > target && obj < curr->data) //verif
+        if (curr->data < target && obj < curr->data) //verif
         {
             target = curr->data;
             target_pos = i;
@@ -102,6 +102,7 @@ void	update_pos_and_target(t_stelem *el, t_stconfig st2, bool mode)
     int      pos;
 
     pos = 0;
+    ft_printf("/////eldata = %d, pos = %d elpos = %d, eltargetpos = %d\n", el->data, pos, el->pos, el->target_pos);
     while(el)
     {
         el->pos = pos;
@@ -252,6 +253,8 @@ void	algo_big_stack(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb)
     
     ft_printf("algo_big_stack\n");
     t_mvset cheapest;
+    t_mvset reset;
+    ft_bzero(&reset, sizeof(t_mvset));
     // ft_printf("111111111111\n");//
     operations_manager(a_pswap, sta, stb, "pb");
     if(sta->info.size > 4)
@@ -275,7 +278,12 @@ void	algo_big_stack(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb)
         cheapest = find_cheapest_moveset(a_pswap, stb, sta, 1);
         apply_moves(a_pswap, sta, stb, cheapest);
         operations_manager(a_pswap, sta, stb, "pa");
-    }    
+    }
+    reset.mv_a = pos_min_stack(*sta);
+    if (reset.mv_a > sta->info.median)
+        reset.mv_a = reset.mv_a - sta->info.size;
+    ft_printf("reset.mv_a = %d", reset.mv_a);
+    apply_moves(a_pswap, sta, stb, reset);
 }
 
 void    sort_stack(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb)

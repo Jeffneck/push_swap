@@ -1,0 +1,506 @@
+pb
+AFTER STACK A *******************************
+0: data=8131 pos=0 target_pos=0
+1: data=26492 pos=0 target_pos=0
+2: data=9671 pos=0 target_pos=0
+3: data=18862 pos=0 target_pos=0
+4: data=20032 pos=0 target_pos=0
+5: data=783 pos=0 target_pos=0
+6: data=209 pos=0 target_pos=0
+7: data=11690 pos=0 target_pos=0
+8: data=13300 pos=0 target_pos=0
+AFTER STACK B *******************************
+0: data=15933 pos=0 target_pos=0
+
+
+
+
+pb
+AFTER STACK A *******************************
+0: data=26492 pos=0 target_pos=0
+1: data=9671 pos=0 target_pos=0
+2: data=18862 pos=0 target_pos=0
+3: data=20032 pos=0 target_pos=0
+4: data=783 pos=0 target_pos=0
+5: data=209 pos=0 target_pos=0
+6: data=11690 pos=0 target_pos=0
+7: data=13300 pos=0 target_pos=0
+AFTER STACK B *******************************
+0: data=8131 pos=0 target_pos=0
+1: data=15933 pos=0 target_pos=0
+
+
+
+
+Elem MOVESET : El.data=26492 El.pos :0 el.target_pos=1 nb_moves : 1  MV A : 0 MV B : 1
+Elem MOVESET : El.data=9671 El.pos :1 el.target_pos=0 nb_moves : 1  MV A : 1 MV B : 0
+Elem MOVESET : El.data=18862 El.pos :2 el.target_pos=1 nb_moves : 2  MV A : 2 MV B : 1
+Elem MOVESET : El.data=20032 El.pos :3 el.target_pos=1 nb_moves : 3  MV A : 3 MV B : 1
+Elem MOVESET : El.data=783 El.pos :4 el.target_pos=1 nb_moves : 4  MV A : 4 MV B : 1
+Elem MOVESET : El.data=209 El.pos :5 el.target_pos=1 nb_moves : 4  MV A : -3 MV B : 1
+Elem MOVESET : El.data=11690 El.pos :6 el.target_pos=0 nb_moves : 2  MV A : -2 MV B : 0
+Elem MOVESET : El.data=13300 El.pos :7 el.target_pos=0 nb_moves : 1  MV A : -1 MV B : 0
+CHEAPEST MOVESET : NB_MOVES=1  MV_A=0 MV_B=1
+rb
+AFTER STACK A *******************************
+0: data=26492 pos=0 target_pos=1
+1: data=9671 pos=1 target_pos=0
+2: data=18862 pos=2 target_pos=1
+3: data=20032 pos=3 target_pos=1
+4: data=783 pos=4 target_pos=1
+5: data=209 pos=5 target_pos=1
+6: data=11690 pos=6 target_pos=0
+7: data=13300 pos=7 target_pos=0
+AFTER STACK B *******************************
+0: data=15933 pos=0 target_pos=0
+1: data=8131 pos=0 target_pos=0
+
+
+
+
+pb
+AFTER STACK A *******************************
+0: data=9671 pos=1 target_pos=0
+1: data=18862 pos=2 target_pos=1
+2: data=20032 pos=3 target_pos=1
+3: data=783 pos=4 target_pos=1
+4: data=209 pos=5 target_pos=1
+5: data=11690 pos=6 target_pos=0
+6: data=13300 pos=7 target_pos=0
+AFTER STACK B *******************************
+0: data=26492 pos=0 target_pos=1
+1: data=15933 pos=0 target_pos=0
+2: data=8131 pos=0 target_pos=0
+
+
+
+
+Elem MOVESET : El.data=9671 El.pos :0 el.target_pos=2 nb_moves : 1  MV A : 0 MV B : -1
+Elem MOVESET : El.data=18862 El.pos :1 el.target_pos=1 nb_moves : 1  MV A : 1 MV B : 1
+Elem MOVESET : El.data=20032 El.pos :2 el.target_pos=1 nb_moves : 2  MV A : 2 MV B : 1
+Elem MOVESET : El.data=783 El.pos :3 el.target_pos=0 nb_moves : 3  MV A : 3 MV B : 0
+Elem MOVESET : El.data=209 El.pos :4 el.target_pos=0 nb_moves : 3  MV A : -3 MV B : 0
+Elem MOVESET : El.data=11690 El.pos :5 el.target_pos=2 nb_moves : 2  MV A : -2 MV B : -1
+Elem MOVESET : El.data=13300 El.pos :6 el.target_pos=2 nb_moves : 1  MV A : -1 MV B : -1
+CHEAPEST MOVESET : NB_MOVES=1  MV_A=0 MV_B=-1
+rrb
+AFTER STACK A *******************************
+0: data=9671 pos=0 target_pos=2
+1: data=18862 pos=1 target_pos=1
+2: data=20032 pos=2 target_pos=1
+3: data=783 pos=3 target_pos=0
+4: data=209 pos=4 target_pos=0
+5: data=11690 pos=5 target_pos=2
+6: data=13300 pos=6 target_pos=2
+AFTER STACK B *******************************
+0: data=8131 pos=0 target_pos=0
+1: data=26492 pos=0 target_pos=1
+2: data=15933 pos=0 target_pos=0
+
+
+
+
+pb
+AFTER STACK A *******************************
+0: data=18862 pos=1 target_pos=1
+1: data=20032 pos=2 target_pos=1
+2: data=783 pos=3 target_pos=0
+3: data=209 pos=4 target_pos=0
+4: data=11690 pos=5 target_pos=2
+5: data=13300 pos=6 target_pos=2
+AFTER STACK B *******************************
+0: data=9671 pos=0 target_pos=2
+1: data=8131 pos=0 target_pos=0
+2: data=26492 pos=0 target_pos=1
+3: data=15933 pos=0 target_pos=0
+
+
+
+
+Elem MOVESET : El.data=18862 El.pos :0 el.target_pos=3 nb_moves : 1  MV A : 0 MV B : -1
+Elem MOVESET : El.data=20032 El.pos :1 el.target_pos=3 nb_moves : 2  MV A : 1 MV B : -1
+Elem MOVESET : El.data=783 El.pos :2 el.target_pos=2 nb_moves : 2  MV A : 2 MV B : 2
+Elem MOVESET : El.data=209 El.pos :3 el.target_pos=2 nb_moves : 3  MV A : 3 MV B : 2
+Elem MOVESET : El.data=11690 El.pos :4 el.target_pos=0 nb_moves : 2  MV A : -2 MV B : 0
+Elem MOVESET : El.data=13300 El.pos :5 el.target_pos=0 nb_moves : 1  MV A : -1 MV B : 0
+CHEAPEST MOVESET : NB_MOVES=1  MV_A=0 MV_B=-1
+rrb
+AFTER STACK A *******************************
+0: data=18862 pos=0 target_pos=3
+1: data=20032 pos=1 target_pos=3
+2: data=783 pos=2 target_pos=2
+3: data=209 pos=3 target_pos=2
+4: data=11690 pos=4 target_pos=0
+5: data=13300 pos=5 target_pos=0
+AFTER STACK B *******************************
+0: data=15933 pos=0 target_pos=0
+1: data=9671 pos=0 target_pos=2
+2: data=8131 pos=0 target_pos=0
+3: data=26492 pos=0 target_pos=1
+
+
+
+
+pb
+AFTER STACK A *******************************
+0: data=20032 pos=1 target_pos=3
+1: data=783 pos=2 target_pos=2
+2: data=209 pos=3 target_pos=2
+3: data=11690 pos=4 target_pos=0
+4: data=13300 pos=5 target_pos=0
+AFTER STACK B *******************************
+0: data=18862 pos=0 target_pos=3
+1: data=15933 pos=0 target_pos=0
+2: data=9671 pos=0 target_pos=2
+3: data=8131 pos=0 target_pos=0
+4: data=26492 pos=0 target_pos=1
+
+
+
+
+Elem MOVESET : El.data=20032 El.pos :0 el.target_pos=0 nb_moves : 0  MV A : 0 MV B : 0
+Elem MOVESET : El.data=783 El.pos :1 el.target_pos=4 nb_moves : 2  MV A : 1 MV B : -1
+Elem MOVESET : El.data=209 El.pos :2 el.target_pos=4 nb_moves : 3  MV A : 2 MV B : -1
+Elem MOVESET : El.data=11690 El.pos :3 el.target_pos=2 nb_moves : 4  MV A : -2 MV B : 2
+Elem MOVESET : El.data=13300 El.pos :4 el.target_pos=2 nb_moves : 3  MV A : -1 MV B : 2
+CHEAPEST MOVESET : NB_MOVES=0  MV_A=0 MV_B=0
+pb
+AFTER STACK A *******************************
+0: data=783 pos=1 target_pos=4
+1: data=209 pos=2 target_pos=4
+2: data=11690 pos=3 target_pos=2
+3: data=13300 pos=4 target_pos=2
+AFTER STACK B *******************************
+0: data=20032 pos=0 target_pos=0
+1: data=18862 pos=0 target_pos=3
+2: data=15933 pos=0 target_pos=0
+3: data=9671 pos=0 target_pos=2
+4: data=8131 pos=0 target_pos=0
+5: data=26492 pos=0 target_pos=1
+
+
+
+
+Elem MOVESET : El.data=783 El.pos :0 el.target_pos=5 nb_moves : 1  MV A : 0 MV B : -1
+Elem MOVESET : El.data=209 El.pos :1 el.target_pos=5 nb_moves : 2  MV A : 1 MV B : -1
+Elem MOVESET : El.data=11690 El.pos :2 el.target_pos=3 nb_moves : 2  MV A : 2 MV B : 3
+Elem MOVESET : El.data=13300 El.pos :3 el.target_pos=3 nb_moves : 4  MV A : -1 MV B : 3
+CHEAPEST MOVESET : NB_MOVES=1  MV_A=0 MV_B=-1
+rrb
+AFTER STACK A *******************************
+0: data=783 pos=0 target_pos=5
+1: data=209 pos=1 target_pos=5
+2: data=11690 pos=2 target_pos=3
+3: data=13300 pos=3 target_pos=3
+AFTER STACK B *******************************
+0: data=26492 pos=0 target_pos=1
+1: data=20032 pos=0 target_pos=0
+2: data=18862 pos=0 target_pos=3
+3: data=15933 pos=0 target_pos=0
+4: data=9671 pos=0 target_pos=2
+5: data=8131 pos=0 target_pos=0
+
+
+
+
+pb
+AFTER STACK A *******************************
+0: data=209 pos=1 target_pos=5
+1: data=11690 pos=2 target_pos=3
+2: data=13300 pos=3 target_pos=3
+AFTER STACK B *******************************
+0: data=783 pos=0 target_pos=5
+1: data=26492 pos=0 target_pos=1
+2: data=20032 pos=0 target_pos=0
+3: data=18862 pos=0 target_pos=3
+4: data=15933 pos=0 target_pos=0
+5: data=9671 pos=0 target_pos=2
+6: data=8131 pos=0 target_pos=0
+
+
+
+
+obj = 783 new target = 11690
+obj = 9671 new target = 11690
+obj = 8131 new target = 11690
+Elem MOVESET : El.data=783 El.pos :0 el.target_pos=1 nb_moves : 1  MV A : 0 MV B : 1
+Elem MOVESET : El.data=26492 El.pos :1 el.target_pos=0 nb_moves : 1  MV A : 1 MV B : 0
+Elem MOVESET : El.data=20032 El.pos :2 el.target_pos=0 nb_moves : 2  MV A : 2 MV B : 0
+Elem MOVESET : El.data=18862 El.pos :3 el.target_pos=0 nb_moves : 3  MV A : 3 MV B : 0
+Elem MOVESET : El.data=15933 El.pos :4 el.target_pos=0 nb_moves : 3  MV A : -3 MV B : 0
+Elem MOVESET : El.data=9671 El.pos :5 el.target_pos=1 nb_moves : 3  MV A : -2 MV B : 1
+Elem MOVESET : El.data=8131 El.pos :6 el.target_pos=1 nb_moves : 2  MV A : -1 MV B : 1
+CHEAPEST MOVESET : NB_MOVES=1  MV_A=1 MV_B=0
+ra
+AFTER STACK A *******************************
+0: data=11690 pos=2 target_pos=3
+1: data=13300 pos=3 target_pos=3
+2: data=209 pos=1 target_pos=5
+AFTER STACK B *******************************
+0: data=783 pos=0 target_pos=1
+1: data=26492 pos=1 target_pos=0
+2: data=20032 pos=2 target_pos=0
+3: data=18862 pos=3 target_pos=0
+4: data=15933 pos=4 target_pos=0
+5: data=9671 pos=5 target_pos=1
+6: data=8131 pos=6 target_pos=1
+
+
+
+
+pa
+AFTER STACK A *******************************
+0: data=783 pos=0 target_pos=1
+1: data=11690 pos=2 target_pos=3
+2: data=13300 pos=3 target_pos=3
+3: data=209 pos=1 target_pos=5
+AFTER STACK B *******************************
+0: data=26492 pos=1 target_pos=0
+1: data=20032 pos=2 target_pos=0
+2: data=18862 pos=3 target_pos=0
+3: data=15933 pos=4 target_pos=0
+4: data=9671 pos=5 target_pos=1
+5: data=8131 pos=6 target_pos=1
+
+
+
+
+obj = 9671 new target = 11690
+obj = 8131 new target = 11690
+Elem MOVESET : El.data=26492 El.pos :0 el.target_pos=3 nb_moves : 1  MV A : 0 MV B : -1
+Elem MOVESET : El.data=20032 El.pos :1 el.target_pos=3 nb_moves : 2  MV A : 1 MV B : -1
+Elem MOVESET : El.data=18862 El.pos :2 el.target_pos=3 nb_moves : 3  MV A : 2 MV B : -1
+Elem MOVESET : El.data=15933 El.pos :3 el.target_pos=3 nb_moves : 4  MV A : 3 MV B : -1
+Elem MOVESET : El.data=9671 El.pos :4 el.target_pos=1 nb_moves : 3  MV A : -2 MV B : 1
+Elem MOVESET : El.data=8131 El.pos :5 el.target_pos=1 nb_moves : 2  MV A : -1 MV B : 1
+CHEAPEST MOVESET : NB_MOVES=1  MV_A=-1 MV_B=0
+rra
+AFTER STACK A *******************************
+0: data=209 pos=1 target_pos=5
+1: data=783 pos=0 target_pos=1
+2: data=11690 pos=2 target_pos=3
+3: data=13300 pos=3 target_pos=3
+AFTER STACK B *******************************
+0: data=26492 pos=0 target_pos=3
+1: data=20032 pos=1 target_pos=3
+2: data=18862 pos=2 target_pos=3
+3: data=15933 pos=3 target_pos=3
+4: data=9671 pos=4 target_pos=1
+5: data=8131 pos=5 target_pos=1
+
+
+
+
+pa
+AFTER STACK A *******************************
+0: data=26492 pos=0 target_pos=3
+1: data=209 pos=1 target_pos=5
+2: data=783 pos=0 target_pos=1
+3: data=11690 pos=2 target_pos=3
+4: data=13300 pos=3 target_pos=3
+AFTER STACK B *******************************
+0: data=20032 pos=1 target_pos=3
+1: data=18862 pos=2 target_pos=3
+2: data=15933 pos=3 target_pos=3
+3: data=9671 pos=4 target_pos=1
+4: data=8131 pos=5 target_pos=1
+
+
+
+
+obj = 20032 new target = 26492
+obj = 18862 new target = 26492
+obj = 15933 new target = 26492
+obj = 9671 new target = 26492
+obj = 9671 new target = 11690
+obj = 8131 new target = 26492
+obj = 8131 new target = 11690
+Elem MOVESET : El.data=20032 El.pos :0 el.target_pos=0 nb_moves : 0  MV A : 0 MV B : 0
+Elem MOVESET : El.data=18862 El.pos :1 el.target_pos=0 nb_moves : 1  MV A : 1 MV B : 0
+Elem MOVESET : El.data=15933 El.pos :2 el.target_pos=0 nb_moves : 2  MV A : 2 MV B : 0
+Elem MOVESET : El.data=9671 El.pos :3 el.target_pos=3 nb_moves : 2  MV A : -2 MV B : -2
+Elem MOVESET : El.data=8131 El.pos :4 el.target_pos=3 nb_moves : 1  MV A : -1 MV B : -2
+CHEAPEST MOVESET : NB_MOVES=0  MV_A=0 MV_B=0
+pa
+AFTER STACK A *******************************
+0: data=20032 pos=0 target_pos=0
+1: data=26492 pos=0 target_pos=3
+2: data=209 pos=1 target_pos=5
+3: data=783 pos=0 target_pos=1
+4: data=11690 pos=2 target_pos=3
+5: data=13300 pos=3 target_pos=3
+AFTER STACK B *******************************
+0: data=18862 pos=1 target_pos=0
+1: data=15933 pos=2 target_pos=0
+2: data=9671 pos=3 target_pos=3
+3: data=8131 pos=4 target_pos=3
+
+
+
+
+obj = 18862 new target = 20032
+obj = 15933 new target = 20032
+obj = 9671 new target = 20032
+obj = 9671 new target = 11690
+obj = 8131 new target = 20032
+obj = 8131 new target = 11690
+Elem MOVESET : El.data=18862 El.pos :0 el.target_pos=0 nb_moves : 0  MV A : 0 MV B : 0
+Elem MOVESET : El.data=15933 El.pos :1 el.target_pos=0 nb_moves : 1  MV A : 1 MV B : 0
+Elem MOVESET : El.data=9671 El.pos :2 el.target_pos=4 nb_moves : 4  MV A : 2 MV B : -2
+Elem MOVESET : El.data=8131 El.pos :3 el.target_pos=4 nb_moves : 1  MV A : -1 MV B : -2
+CHEAPEST MOVESET : NB_MOVES=0  MV_A=0 MV_B=0
+pa
+AFTER STACK A *******************************
+0: data=18862 pos=0 target_pos=0
+1: data=20032 pos=0 target_pos=0
+2: data=26492 pos=0 target_pos=3
+3: data=209 pos=1 target_pos=5
+4: data=783 pos=0 target_pos=1
+5: data=11690 pos=2 target_pos=3
+6: data=13300 pos=3 target_pos=3
+AFTER STACK B *******************************
+0: data=15933 pos=1 target_pos=0
+1: data=9671 pos=2 target_pos=4
+2: data=8131 pos=3 target_pos=4
+
+
+
+
+obj = 15933 new target = 18862
+obj = 9671 new target = 18862
+obj = 9671 new target = 11690
+obj = 8131 new target = 18862
+obj = 8131 new target = 11690
+Elem MOVESET : El.data=15933 El.pos :0 el.target_pos=0 nb_moves : 0  MV A : 0 MV B : 0
+Elem MOVESET : El.data=9671 El.pos :1 el.target_pos=5 nb_moves : 3  MV A : 1 MV B : -2
+Elem MOVESET : El.data=8131 El.pos :2 el.target_pos=5 nb_moves : 1  MV A : -1 MV B : -2
+CHEAPEST MOVESET : NB_MOVES=0  MV_A=0 MV_B=0
+pa
+AFTER STACK A *******************************
+0: data=15933 pos=0 target_pos=0
+1: data=18862 pos=0 target_pos=0
+2: data=20032 pos=0 target_pos=0
+3: data=26492 pos=0 target_pos=3
+4: data=209 pos=1 target_pos=5
+5: data=783 pos=0 target_pos=1
+6: data=11690 pos=2 target_pos=3
+7: data=13300 pos=3 target_pos=3
+AFTER STACK B *******************************
+0: data=9671 pos=1 target_pos=5
+1: data=8131 pos=2 target_pos=5
+
+
+
+
+obj = 9671 new target = 15933
+obj = 9671 new target = 11690
+obj = 8131 new target = 15933
+obj = 8131 new target = 11690
+Elem MOVESET : El.data=9671 El.pos :0 el.target_pos=6 nb_moves : 2  MV A : 0 MV B : -2
+Elem MOVESET : El.data=8131 El.pos :1 el.target_pos=6 nb_moves : 3  MV A : 1 MV B : -2
+CHEAPEST MOVESET : NB_MOVES=2  MV_A=-2 MV_B=0
+rra
+AFTER STACK A *******************************
+0: data=13300 pos=3 target_pos=3
+1: data=15933 pos=0 target_pos=0
+2: data=18862 pos=0 target_pos=0
+3: data=20032 pos=0 target_pos=0
+4: data=26492 pos=0 target_pos=3
+5: data=209 pos=1 target_pos=5
+6: data=783 pos=0 target_pos=1
+7: data=11690 pos=2 target_pos=3
+AFTER STACK B *******************************
+0: data=9671 pos=0 target_pos=6
+1: data=8131 pos=1 target_pos=6
+
+
+
+
+rra
+AFTER STACK A *******************************
+0: data=11690 pos=2 target_pos=3
+1: data=13300 pos=3 target_pos=3
+2: data=15933 pos=0 target_pos=0
+3: data=18862 pos=0 target_pos=0
+4: data=20032 pos=0 target_pos=0
+5: data=26492 pos=0 target_pos=3
+6: data=209 pos=1 target_pos=5
+7: data=783 pos=0 target_pos=1
+AFTER STACK B *******************************
+0: data=9671 pos=0 target_pos=6
+1: data=8131 pos=1 target_pos=6
+
+
+
+
+pa
+AFTER STACK A *******************************
+0: data=9671 pos=0 target_pos=6
+1: data=11690 pos=2 target_pos=3
+2: data=13300 pos=3 target_pos=3
+3: data=15933 pos=0 target_pos=0
+4: data=18862 pos=0 target_pos=0
+5: data=20032 pos=0 target_pos=0
+6: data=26492 pos=0 target_pos=3
+7: data=209 pos=1 target_pos=5
+8: data=783 pos=0 target_pos=1
+AFTER STACK B *******************************
+0: data=8131 pos=1 target_pos=6
+
+
+
+
+obj = 8131 new target = 9671
+Elem MOVESET : El.data=8131 El.pos :0 el.target_pos=0 nb_moves : 0  MV A : 0 MV B : 0
+CHEAPEST MOVESET : NB_MOVES=0  MV_A=0 MV_B=0
+pa
+AFTER STACK A *******************************
+0: data=8131 pos=0 target_pos=0
+1: data=9671 pos=0 target_pos=6
+2: data=11690 pos=2 target_pos=3
+3: data=13300 pos=3 target_pos=3
+4: data=15933 pos=0 target_pos=0
+5: data=18862 pos=0 target_pos=0
+6: data=20032 pos=0 target_pos=0
+7: data=26492 pos=0 target_pos=3
+8: data=209 pos=1 target_pos=5
+9: data=783 pos=0 target_pos=1
+AFTER STACK B *******************************
+
+
+
+
+rra
+AFTER STACK A *******************************
+0: data=783 pos=0 target_pos=1
+1: data=8131 pos=0 target_pos=0
+2: data=9671 pos=0 target_pos=6
+3: data=11690 pos=2 target_pos=3
+4: data=13300 pos=3 target_pos=3
+5: data=15933 pos=0 target_pos=0
+6: data=18862 pos=0 target_pos=0
+7: data=20032 pos=0 target_pos=0
+8: data=26492 pos=0 target_pos=3
+9: data=209 pos=1 target_pos=5
+AFTER STACK B *******************************
+
+
+
+
+rra
+AFTER STACK A *******************************
+0: data=209 pos=1 target_pos=5
+1: data=783 pos=0 target_pos=1
+2: data=8131 pos=0 target_pos=0
+3: data=9671 pos=0 target_pos=6
+4: data=11690 pos=2 target_pos=3
+5: data=13300 pos=3 target_pos=3
+6: data=15933 pos=0 target_pos=0
+7: data=18862 pos=0 target_pos=0
+8: data=20032 pos=0 target_pos=0
+9: data=26492 pos=0 target_pos=3
+AFTER STACK B *******************************
+
+
+
+

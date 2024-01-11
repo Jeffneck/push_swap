@@ -184,7 +184,7 @@ t_mvset    find_elem_cheapest_moveset(t_stelem el, t_stinfo info_st1, t_stinfo i
         nb_moves = *((int *)max_value(&(el_moves), &(target_moves), sizeof(int)));
     else if (el_moves < 0 && target_moves < 0)
         nb_moves = -1 * *((int *)min_value(&(el_moves), &(target_moves), sizeof(int)));
-    ft_printf("Elem MOVESET : El.data=%d El.pos :%d el.target_pos=%d nb_moves : %d  MV A : %d MV B : %d\n", el.data, el.pos, el.target_pos, nb_moves, el_moves, target_moves);
+    // ft_printf("Elem MOVESET : El.data=%d El.pos :%d el.target_pos=%d nb_moves : %d  MV A : %d MV B : %d\n", el.data, el.pos, el.target_pos, nb_moves, el_moves, target_moves);
     return ((t_mvset) {nb_moves, el_moves, target_moves});
 }
 
@@ -212,7 +212,7 @@ t_mvset    find_cheapest_moveset(t_pswap *a_pswap, t_stconfig *st1, t_stconfig *
         global_cheapest.mv_a = tmp.mv_b;
         global_cheapest.mv_b = tmp.mv_a;
     }
-    ft_printf("CHEAPEST MOVESET : NB_MOVES=%d  MV_A=%d MV_B=%d\n", global_cheapest.nb_moves, global_cheapest.mv_a, global_cheapest.mv_b);
+    // ft_printf("CHEAPEST MOVESET : NB_MOVES=%d  MV_A=%d MV_B=%d\n", global_cheapest.nb_moves, global_cheapest.mv_a, global_cheapest.mv_b);
     return(global_cheapest);
 }
 

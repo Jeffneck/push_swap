@@ -11,6 +11,22 @@ void     init_stacks(t_pswap *a_pswap)
         close_error(a_pswap, "Memory : error alloc init_stack B\n");
 }
 
+int is_duplicata(int nb, t_stconfig *sta) //utiliser la stack
+{
+    
+    //refaire la fonction
+    int     i;
+
+    i = 0;
+    while (i < size)
+    {
+        if (c == args[i])
+            return (1);
+        i++;
+    }
+    return (0);
+}
+
 void    fill_stack_a(t_pswap *a_pswap, t_stconfig *sta, char **c2_args, int nb_args)
 {
     // printf("fill_stack_a\n");
@@ -23,6 +39,8 @@ void    fill_stack_a(t_pswap *a_pswap, t_stconfig *sta, char **c2_args, int nb_a
     {
         nb = ft_atol(c2_args[i]);
         // printf(" NB = %ld\n", nb);//
+        if(is_duplicata(nb, sta))
+                close_error(a_pswap, "Error\n");
         if (nb > (long)INT_MAX || nb < (long)INT_MIN)
             close_error(a_pswap, "arguments : at leats 1 arg is too big for an int\n");
         stack_push_front(a_pswap, a_pswap->sta, (int)nb);

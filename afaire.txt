@@ -1,2 +1,1 @@
-la median et la size ne sont pas bien maj ??
 retirer toutes les fonctions abs()

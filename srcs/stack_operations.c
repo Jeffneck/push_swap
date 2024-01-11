@@ -221,9 +221,9 @@ void    operations_manager(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, c
     }
     free_char2(&(a_pswap->curr_operations));
     a_pswap->curr_operations = NULL;
-    ft_printf("AFTER STACK A *******************************\n");//
-    ft_display_stack(sta); // test
-    ft_printf("AFTER STACK B *******************************\n");//
-    ft_display_stack(stb); // test
-    ft_printf("\n\n\n\n");//
+    // ft_printf("AFTER STACK A *******************************\n");//
+    // ft_display_stack(sta); // test
+    // ft_printf("AFTER STACK B *******************************\n");//
+    // ft_display_stack(stb); // test
+    // ft_printf("\n\n\n\n");//
 }    

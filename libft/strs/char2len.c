@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   char2len.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hanglade <hanglade@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 14:32:51 by hanglade          #+#    #+#             */
-/*   Updated: 2024/01/12 17:12:07 by hanglade         ###   ########.fr       */
+/*   Created: 2024/01/12 13:47:43 by hanglade          #+#    #+#             */
+/*   Updated: 2024/01/12 13:47:44 by hanglade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+size_t	char2len(char **char2)
 {
-	if (s != NULL)
-		write(fd, s, ft_strlen(s));
+    size_t	i;
+
+    i = 0;
+    while (char2[i])
+        i++;
+    return (i);
 }

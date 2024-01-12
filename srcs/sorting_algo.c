@@ -157,7 +157,7 @@ t_mvset    find_elem_cheapest_moveset(t_stelem el, t_stinfo info_st1, t_stinfo i
     return ((t_mvset) {nb_moves, el_moves, target_moves});
 }
 
-t_mvset    find_cheapest_moveset(t_pswap *a_pswap, t_stconfig *st1, t_stconfig *st2, bool mode)
+t_mvset    find_cheapest_moveset(t_stconfig *st1, t_stconfig *st2, bool mode)
 {
     t_stelem *el;
     t_mvset global_cheapest;
@@ -219,7 +219,6 @@ void    apply_moves(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, t_mvset 
     step_st2 = determine_step(mvset.mv_b);
     
     apply_double_moves(a_pswap, sta, stb, &mvset);
-    //mv indivs
     while (mvset.mv_a != 0)
     {
         if (mvset.mv_a > 0)
@@ -231,7 +230,6 @@ void    apply_moves(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, t_mvset 
     }
     while (mvset.mv_b != 0)
     {
-        // printf("MOVES RESTANTS = %d", mvset.mv_b);
         if (mvset.mv_b > 0)
             operations_manager(a_pswap, sta, stb, "rb");
         else
@@ -243,44 +241,35 @@ void    apply_moves(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, t_mvset 
 void	algo_big_stack(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb)
 {
     
-    // ft_printf("algo_big_stack\n");
     t_mvset cheapest;
     t_mvset reset;
     ft_bzero(&reset, sizeof(t_mvset));
-    // ft_printf("111111111111\n");//
     operations_manager(a_pswap, sta, stb, "pb");
     if(sta->info.size > 4)
 	    operations_manager(a_pswap, sta, stb, "pb");
     while(sta->info.size > 3)
     {
-        // ft_printf("///////////////STACK A => STACK B /////////////////\n");//
         update_pos_and_target(sta->top, *stb, 0);
-        // ft_display_stack(sta);//
-        cheapest = find_cheapest_moveset(a_pswap, sta, stb, 0);
+        cheapest = find_cheapest_moveset(sta, stb, 0);
         apply_moves(a_pswap, sta, stb, cheapest);
         operations_manager(a_pswap, sta, stb, "pb");
-        // ft_printf("333333333333\n");//
     }
-    // ft_printf("///////////////ALGO 3 /////////////////\n");//
     algo_3_stack(a_pswap, sta);
     while(stb->info.size > 0)
     {
-        // ft_printf("///////////////STACK B => STACK A /////////////////\n");//
         update_pos_and_target(stb->top, *sta, 1);
-        cheapest = find_cheapest_moveset(a_pswap, stb, sta, 1);
+        cheapest = find_cheapest_moveset(stb, sta, 1);
         apply_moves(a_pswap, sta, stb, cheapest);
         operations_manager(a_pswap, sta, stb, "pa");
     }
     reset.mv_a = pos_min_stack(*sta);
     if (reset.mv_a > sta->info.median)
         reset.mv_a = reset.mv_a - sta->info.size;
-    // ft_printf("reset.mv_a = %d", reset.mv_a);
     apply_moves(a_pswap, sta, stb, reset);
 }
 
 void    sort_stack(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb)
 {
-    // ft_printf("sort_stack\n");
     if (sta->info.size <= 3)
         algo_3_stack(a_pswap, sta);
     else

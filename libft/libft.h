@@ -6,7 +6,7 @@
 /*   By: hanglade <hanglade@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:35:30 by hanglade          #+#    #+#             */
-/*   Updated: 2023/11/09 14:35:30 by hanglade         ###   ########.fr       */
+/*   Updated: 2024/01/12 14:19:41 by hanglade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_fd
 	int		fd;
 	char	buffer[BUFFER_SIZE + 1];
 }	t_fd;
+
+
 
 char	*ft_strdup(const char *str);
 size_t	gnl_ft_strlen(char *s);
@@ -75,14 +77,20 @@ int		ft_toupper(int c);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_strcat(char *dest, const char *src);
-
+/**********char2**********/
+char 	**char2dup(char **char2);
+size_t	char2len(char **char2);
+void	free_char2(char ***a_char2);
+void	ft_putchar2_endl(char **char2);
 /**********Others**********/
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
-int	ft_isspace(char c);
+int		ft_isspace(char c);
+int		ft_issign(char c);
+
 
 /**list**/
 

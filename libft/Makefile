@@ -4,6 +4,11 @@ SRCS	=	\
 			file/ft_putnbr_fd.c \
 			file/ft_putstr_fd.c \
 			\
+			strs/char2dup.c \
+			strs/char2len.c \
+			strs/free_char2.c \
+			strs/ft_putchar2_endl.c\
+			\
 			lst/ft_lstadd_back.c\
 			lst/ft_lstadd_front.c\
 			lst/ft_lstclear.c\
@@ -32,6 +37,7 @@ SRCS	=	\
 			others/ft_isalnum.c\
 			others/ft_isalpha.c\
 			others/ft_isascii.c\
+			others/ft_issign.c\
 			\
 			str/ft_strjoin.c \
 			str/ft_strdup.c\
@@ -78,13 +84,13 @@ RM	= rm -rf
 
 ${NAME}:	${OBJS}
 		@ar rc ${NAME} ${OBJS}
-		@mkdir -p obj
-		@mv ${OBJS} obj/
+# @mkdir -p obj
+# @mv ${OBJS} obj/
 
 all:	${NAME}
 
 clean:
-		${RM} obj/*.o
+		${RM} */*.o
 
 fclean:		clean
 		${RM} ${NAME}

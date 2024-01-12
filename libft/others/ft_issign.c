@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_issign.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hanglade <hanglade@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 14:32:51 by hanglade          #+#    #+#             */
-/*   Updated: 2024/01/12 17:12:07 by hanglade         ###   ########.fr       */
+/*   Created: 2024/01/12 13:53:19 by hanglade          #+#    #+#             */
+/*   Updated: 2024/01/12 13:53:23 by hanglade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int ft_issign(char c)
 {
-	if (s != NULL)
-		write(fd, s, ft_strlen(s));
+    return (c == '+' || c == '-');
 }

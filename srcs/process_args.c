@@ -2,8 +2,8 @@
 
 void    verify_args_format(t_pswap *a_pswap, int nb_args, char **args)
 {
-    size_t  i;
-    size_t  j;
+    int  i;
+    int  j;
     int len_nbr;
 
     i = 0;
@@ -32,10 +32,8 @@ void    verify_args_format(t_pswap *a_pswap, int nb_args, char **args)
 
 void    extract_args(t_pswap *a_pswap, int argc, char **argv)
 {
-    size_t i;
     size_t  size_stack;
 
-    i = 0;
     if (argc == 2)
         a_pswap->c2_args = ft_split(argv[1], ' ');
     else 

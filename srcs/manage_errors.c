@@ -6,11 +6,12 @@ int exit_error(char *strerr)
     exit(EXIT_FAILURE);
 }
 
-void    close_program(t_pswap *a_pswap, char *strerr) // les elements ne peuvent pas etre mis a NULL dans les fonctions directement?
+void    close_program(t_pswap *a_pswap, char *strerr)
 {
-    // printf("ft_close_program\n");
     if (a_pswap->c2_args)
         free_char2(&(a_pswap->c2_args));
+    if (a_pswap->checker)
+        free(a_pswap->checker);
     if (a_pswap->curr_operations)
         free_char2(&(a_pswap->curr_operations));
     if (a_pswap->sta)

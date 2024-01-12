@@ -57,6 +57,7 @@ typedef struct s_stconfig
 typedef struct s_pswap
 {
     char        **c2_args;
+    char        *checker;
     int         nb_args;
     char        **curr_operations;
     t_stconfig  *sta;
@@ -74,7 +75,11 @@ typedef struct s_pswap
 //     int range;//diff entre min et max
 // }   t_chuncks;
 
-//CREATE_STACK.c
+void     init_stacks(t_pswap *a_pswap);
+void    fill_stack_a(t_pswap *a_pswap, t_stconfig *sta, char **c2_args, int nb_args);
+int     stack_is_sorted(t_stconfig *st);
+
+//CREATE_STACK.
 t_stconfig  *ft_create_stack(char **p2_args, size_t nb_args);
 t_stconfig *ft_init_stack_config(void);
 
@@ -82,12 +87,6 @@ t_stconfig *ft_init_stack_config(void);
 void    verify_args_format(t_pswap *a_pswap, int nb_args, char **args);
 void    extract_args(t_pswap *a_pswap, int nb_args, char **args);
 
-//MISC.C
-void    free_stack(t_stconfig *st);
-void	free_char2(char ***a_char2);
-size_t	char2len(char **char2);
-char **char2dup(char **char2);
-int ft_issign(char c);
 
 //MANAGE_ERRORS.C
 int     exit_error(char *strerr);
@@ -101,14 +100,25 @@ void    ft_display_stack(t_stconfig *st);
 //SORTING_ALGO.C
 void    sort_stack(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb);
 
-//STACK_OPERATIONS.c
+//MANAGE_OPERATIONS.c
 void    operations_manager(t_pswap *a_pswap, t_stconfig *stA, t_stconfig *stB, char *str_ops);
 
 //STACK_UTILS.c
-int pos_min_stack(t_stconfig st);
-int pos_max_stack(t_stconfig st);
-int min_in_stack(t_stconfig st);
-int max_in_stack(t_stconfig st);
+int     pos_min_stack(t_stconfig st);
+int     pos_max_stack(t_stconfig st);
+int     min_in_stack(t_stconfig st);
+int     max_in_stack(t_stconfig st);
+
+//STACK_UTILS2.c
+void    free_stack(t_stconfig *st);
+int     is_duplicata(int nb, t_stconfig *sta);
+void    update_stinfo(t_stconfig *st1, t_stconfig *st2);
+
+//OPERATIONS.c
+void    swap_top_stack(t_stconfig *st);
+void    push_st1_to_st2(t_stconfig *st1, t_stconfig *st2);
+void    reverse_rotate_st(t_stconfig *st);
+void    rotate_st(t_stconfig *st);
 
 // //PUSH_SWAP.c
 // void    algo_3_stack(t_stconfig *stA, t_stconfig *stB);

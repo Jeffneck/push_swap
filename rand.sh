@@ -22,9 +22,13 @@ done
 # Exécute le binaire ./push_swap avec la liste de nombres comme arguments
 # ./ps_geof/pushswap/push_swap "${liste_nombres[@]}" > out_geof.txt
 echo ""
+# valgrind ./push_swap "${liste_nombres[@]}" > out.txt
 ./push_swap "${liste_nombres[@]}" > out.txt
 cat out.txt | wc -l 
-./push_swap "${liste_nombres[@]}" | ./checker_linux "${liste_nombres[@]}" 
+cat out.txt | ./checker_linux "${liste_nombres[@]}" 
+
+sleep 8
+cat out.txt | ./checker/checker "${liste_nombres[@]}" 
 # echo "geof"
 # cat out_geof.txt |  wc -l 
 # echo "dup"

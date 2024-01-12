@@ -41,17 +41,17 @@ int  closest_smaller_pos(int obj, t_stconfig st_target)
     t_stelem    *curr;
     int      target_pos;
     int      i;
-    int      target;
+    long      target;
     int         found;
 
     curr = st_target.top;
-    target = INT_MIN;
+    target = -2147483650;
     target_pos = 0;
     i = 0;
     found = 0;
     while(curr)
     {
-        if (curr->data > target && obj > curr->data) //verif
+        if ((long) curr->data > target && obj > curr->data) //ve
         {
             target = curr->data;
             target_pos = i;
@@ -67,27 +67,24 @@ int  closest_smaller_pos(int obj, t_stconfig st_target)
 
 int  closest_bigger_pos(int obj, t_stconfig st_target)
 {
-    //erreur la dedans
-    // ft_printf("closest_bigger_pos\n");
     t_stelem    *curr;
     int      target_pos;
     int      i;
-    int      target;
+    long      target;
     int         found;
 
     curr = st_target.top;
-    target = INT_MAX;
+    target = 2147483650;
     target_pos = 0;
     i = 0;
     found = 0;
     while(curr)
     {
-        if (curr->data < target && obj < curr->data) //verif
+        if ((long)curr->data < target && obj < curr->data) //erreur ici
         {
             target = curr->data;
             target_pos = i;
             found = 1;
-            // ft_printf("obj = %d new target = %d\n", obj, target);//
         }
         i++;
         curr = curr->next;
@@ -97,74 +94,11 @@ int  closest_bigger_pos(int obj, t_stconfig st_target)
     return (target_pos);
 }
 
-// //geoff
-// void	set_target_for_a(t_stconfig *sta, t_stconfig *stb)
-// {
-// 	t_stelem	*curr_a;
-// 	t_stelem	*curr_b;
-// 	t_stelem	*target_node;
-// 	int		target;
-
-// 	if (!sta || !stb)
-// 		return ;
-// 	while (curr_a)
-// 	{
-// 		curr_b = stb->top;
-// 		target = INT_MIN;
-// 		while (curr_b)
-// 		{
-// 			if (curr_b->pos < curr_a->pos && curr_b->pos > target)
-// 			{
-// 				target = curr_b->nbr;
-// 				target_node = curr_b;
-// 			}
-// 			curr_b = curr_b->next;
-// 		}
-// 		if (target == INT_MIN)
-// 			curr_a->target_pos = find_max(b);
-// 		else
-// 			curr_a->target_pos = target_node;
-// 		curr_a = curr_a->next;
-// 	}
-// }
-
-// //geoff
-// void	set_target_for_b(t_stconfig *a, t_stconfig *b)
-// {
-// 	t_stconfig	*current_a;
-// 	t_stconfig	*target_node;
-// 	int		target;
-
-// 	if (!a || !b)
-// 		return ;
-// 	while (b)
-// 	{
-// 		target = INT_MAX;
-// 		current_a = a;
-// 		while (current_a)
-// 		{
-// 			if (current_a->nbr > b->nbr && current_a->nbr < target)
-// 			{
-// 				target = current_a->nbr;
-// 				target_node = current_a;
-// 			}
-// 			current_a = current_a->next;
-// 		}
-// 		if (target == INT_MAX)
-// 			b->target_node = find_min(a);
-// 		else
-// 			b->target_node = target_node;
-// 		b = b->next;
-// 	}
-// }
-
 void	update_pos_and_target(t_stelem *el, t_stconfig st2, bool mode)
 {
-    // ft_printf("update_pos_and_target\n");
     int      pos;
 
     pos = 0;
-    // ft_printf("/////eldata = %d, pos = %d elpos = %d, eltargetpos = %d\n", el->data, pos, el->pos, el->target_pos);
     while(el)
     {
         el->pos = pos;
@@ -173,7 +107,6 @@ void	update_pos_and_target(t_stelem *el, t_stconfig st2, bool mode)
         else
             el->target_pos = closest_bigger_pos(el->data, st2);
         pos++;
-        // ft_printf("eldata = %d, elpos = %d, eltargetpos = %d\n", el->data, el->pos, el->target_pos);
         el = el->next;
     }
 
@@ -193,51 +126,12 @@ int    return_min_int(int nb1, int nb2)
     return (nb2); 
 }
 
-// void    *max_value(void *nb1, void *nb2, size_t size)
-// {
-//     ft_printf("max_value\n");
-//     size_t  i;
-//     const unsigned char   *bit_nb1;
-//     const unsigned char   *bit_nb2;
-
-//     if (nb1 == NULL || nb2 == NULL || size == 0)
-//         return NULL;
-//     i = size - 1;
-//     bit_nb1 = (unsigned char *) nb1;
-//     bit_nb2 = (unsigned char *) nb2;
-//     while (i > 0)
-//     {
-//         if (bit_nb1[i] > bit_nb2[i])
-//             return (nb1);
-//         else if (bit_nb2[i] > bit_nb1[i])
-//             return (nb2);
-//         i--;
-//     }
-//     return (nb1);
-// }
-
-// void    *min_value(void *nb1, void *nb2, size_t size)
-// {
-//     ft_printf("min_value\n");
-//     size_t  i;
-//     const unsigned char   *bit_nb1;
-//     const unsigned char   *bit_nb2;
-
-//     if (nb1 == NULL || nb2 == NULL || size == 0)
-//         return NULL;
-//     i = size - 1;
-//     bit_nb1 = (unsigned char *) nb1;
-//     bit_nb2 = (unsigned char *) nb2;
-//     while (i > 0)
-//     {
-//         if (bit_nb1[i] < bit_nb2[i])
-//             return (nb1);
-//         else if (bit_nb2[i] < bit_nb1[i])
-//             return (nb2);
-//         i--;
-//     }
-//     return (nb1);
-// }
+int absolute(int num) 
+{
+    if (num < 0)
+        return -num;
+    return num;
+}
 
 t_mvset    find_elem_cheapest_moveset(t_stelem el, t_stinfo info_st1, t_stinfo info_st2)
 {
@@ -254,20 +148,17 @@ t_mvset    find_elem_cheapest_moveset(t_stelem el, t_stinfo info_st1, t_stinfo i
     if (el.target_pos > info_st2.median)
         target_moves = el.target_pos - info_st2.size;
 
-    nb_moves = abs(el_moves) + abs(target_moves);
+    nb_moves = absolute(el_moves) + absolute(target_moves);
     if ((el_moves > 0 && target_moves > 0))
         nb_moves = return_max_int(el_moves, target_moves);
-        // nb_moves = *((int *)max_value(&(el_moves), &(target_moves), sizeof(int)));
     else if (el_moves < 0 && target_moves < 0)
         nb_moves = return_min_int(el_moves, target_moves);
-        // nb_moves = -1 * *((int *)min_value(&(el_moves), &(target_moves), sizeof(int)));
     // ft_printf("Elem MOVESET : El.data=%d El.pos :%d el.target_pos=%d nb_moves : %d  MV A : %d MV B : %d\n", el.data, el.pos, el.target_pos, nb_moves, el_moves, target_moves);
     return ((t_mvset) {nb_moves, el_moves, target_moves});
 }
 
 t_mvset    find_cheapest_moveset(t_pswap *a_pswap, t_stconfig *st1, t_stconfig *st2, bool mode)
 {
-    // ft_printf("find_cheapest_moveset\n");
     t_stelem *el;
     t_mvset global_cheapest;
     t_mvset tmp;
@@ -277,12 +168,10 @@ t_mvset    find_cheapest_moveset(t_pswap *a_pswap, t_stconfig *st1, t_stconfig *
     while(el)
     {
         tmp = find_elem_cheapest_moveset(*el, st1->info, st2->info);
-        // printf("SIZE ST1 = %d MEDIAN1 = %d SIZE ST2 = %d MEDIAN2 = %d\n", st1->info.size, st1->info.median, st2->info.size, st2->info.median);//
-        if (abs(tmp.nb_moves) < abs(global_cheapest.nb_moves))
+        if (absolute(tmp.nb_moves) < absolute(global_cheapest.nb_moves))
             global_cheapest = tmp;
         el = el->next;
     }
-    //on fait en sorte que st1 => stA et st2 => stB
     if (mode == 1)
     {
         tmp = global_cheapest;
@@ -398,78 +287,3 @@ void    sort_stack(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb)
         algo_big_stack(a_pswap, sta, stb);
 }
 
-
-
-
-
-
-
-
-// void	find_moves_to_target(t_stconfig st1, t_stconfig st2, bool mode)
-// {
-//     t_stelem    *curr1;
-//     size_t      target_pos;
-//     size_t      pos;
-
-//     curr1 = st1.top;
-//     pos = 0;
-//     while(!curr1)
-//     {
-//         if(mode = 0)
-//             target_pos = closest_smaller_pos(curr1->data, st2);
-//         else
-//             target_pos = closest_bigger_pos(curr1->data, st2);
-//         curr1->moves.c_up = pos;
-//         curr1->moves.c_down = st1.size - pos;
-//         curr1->moves.t_up = target_pos;
-//         curr1->moves.t_down = st2.size - target_pos;
-//         pos++;
-//         curr1 = curr1->next;
-//     }
-// }
-
-
-// t_mvset define_cheapest_moves_for_el(t_stelem *curr)
-// {    
-//     t_mvset cheapest;
-//     t_
-//     size_t  tmp_nb_moves;
-
-//     tmp_nb_moves = max_value(curr.moves.c_up, curr.moves.t_up, sizeof(size_t));
-//     cheapest = (t_mvset) {tmp_nb_moves, UP, curr.moves.c_up, UP, curr.moves.t_up};
-//     tmp_nb_moves = max_value(curr.moves.c_down, curr.moves.t_down, sizeof(size_t));
-//     if(tmp_nb_moves < cheapest.nb_moves)
-//         cheapest = (t_mvset) {tmp_nb_moves, DOWN, curr.moves.c_down, DOWN, curr.moves.t_down};
-//     tmp_nb_moves = curr.moves.c_up + curr.moves.t_down;
-//     if(tmp_nb_moves < cheapest.nb_moves)
-//         cheapest = (t_mvset) {tmp_nb_moves, UP, curr.moves.c_up, DOWN, curr.moves.t_down};
-//     tmp_nb_moves = curr.moves.c_down + curr.moves.t_up;
-//     if(tmp_nb_moves < cheapest.nb_moves)
-//         cheapest = (t_mvset) {tmp_nb_moves, DOWN, curr.moves.c_down, UP, curr.moves.t_up};
-//     return (cheapest);
-// }
-
-// t_mvset define_cheapest_moves_for_el(t_stelem curr)
-// {    
-//     t_mvset cheapest;
-//     size_t  moves_meter;
-//     size_t  tmp;
-//     moves_meter = max_value(curr.moves.c_up, curr.moves.t_up, sizeof(size_t));
-//     cheapest = (t_mvset) {UP, curr.moves.c_up, UP, curr.moves.t_up};
-//     tmp = max_value(curr.moves.c_down, curr.moves.t_down, sizeof(size_t));
-//     if(tmp < moves_meter)
-//     {
-//         moves_meter = tmp;
-//         cheapest = (t_mvset) {DOWN, curr.moves.c_down, DOWN, curr.moves.t_down};
-//     }
-//     tmp = curr.moves.c_up + curr.moves.t_down;
-//     if(tmp < moves_meter)
-//     {
-//         moves_meter = tmp;
-//         cheapest = (t_mvset) {UP, curr.moves.c_up, DOWN, curr.moves.t_down};
-//     }
-//     tmp = curr.moves.c_down + curr.moves.t_up;
-//     if(tmp < moves_meter)
-//         cheapest = (t_mvset) {DOWN, curr.moves.c_down, UP, curr.moves.t_up};
-//     return (cheapest);
-// }

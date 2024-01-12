@@ -22,7 +22,6 @@ int pos_min_stack(t_stconfig st)
         current = current->next;
         i++; 
     }
-    // ft_printf("pos min in stack is : %d\n", pos_min);
     return (pos_min);
 }
 int pos_max_stack(t_stconfig st)
@@ -30,7 +29,7 @@ int pos_max_stack(t_stconfig st)
     t_stelem *current;
     int pos_max;
     int max;
-    int i; //size_t ?
+    int i;
     
     if (st.top == NULL)
         return (-1);

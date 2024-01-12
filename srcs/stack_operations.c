@@ -202,12 +202,11 @@ void    operations_manager(t_pswap *a_pswap, t_stconfig *sta, t_stconfig *stb, c
     operations = ft_split(str_ops, ','); //malloc teste
     a_pswap->curr_operations = operations;
     if (!operations)
-        close_error(a_pswap, "allocation : malloc error during split\n");
+        close_program(a_pswap, "Error\n");
     while(operations[i])
     {
-        // sleep(3);//
         if (!operation_exists(operations[i])) // que pour le checker ou laisser quand meme ?
-            close_error(a_pswap, "sorting : at least one operation used does not exist\n");
+            close_program(a_pswap, "Error\n");
         if (operations[i][0] == 's')
             swap_manager(sta, stb, operations[i]);
         else if (operations[i][0] == 'p')

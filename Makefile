@@ -15,7 +15,7 @@ CC		=	gcc
 
 INC		=	-I ./includes
 
-FLAGS	=	-Wall -Wextra -Werror -g3
+FLAGS	=	-Wall -Wextra -Werror
 
 NAME	=	push_swap
 

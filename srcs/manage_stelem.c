@@ -24,7 +24,7 @@ void    stack_push_front(t_pswap *a_pswap, t_stconfig *st, int data)
 
     new_elem = create_stelem(data);
     if (new_elem == NULL)
-        close_error(a_pswap, "allocation : malloc error during stelem creation\n");
+        close_program(a_pswap, "Error\n");
     if (!st->top)
         st->bot = new_elem;
     else 

@@ -90,8 +90,8 @@ char **char2dup(char **char2);
 int ft_issign(char c);
 
 //MANAGE_ERRORS.C
-int exit_error(char *strerr);
-void    close_error(t_pswap *a_pswap, char *strerr);
+int     exit_error(char *strerr);
+void    close_program(t_pswap *a_pswap, char *strerr);
 
 //MANAGE_STELEMS.C
 t_stelem *create_stelem(int data);

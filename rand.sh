@@ -27,6 +27,7 @@ echo ""
 cat out.txt | wc -l 
 cat out.txt | ./checker_linux "${liste_nombres[@]}" 
 
+cat out.txt | ./checker/checker "${liste_nombres[@]}" 
 sleep 8
 cat out.txt | ./checker/checker "${liste_nombres[@]}" 
 # echo "geof"

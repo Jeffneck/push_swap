@@ -6,13 +6,13 @@
 /*   By: hanglade <hanglade@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 13:53:19 by hanglade          #+#    #+#             */
-/*   Updated: 2024/01/12 13:53:23 by hanglade         ###   ########.fr       */
+/*   Updated: 2024/01/15 19:00:47 by hanglade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-int ft_issign(char c)
+int	ft_issign(char c)
 {
-    return (c == '+' || c == '-');
+	return (c == '+' || c == '-');
 }

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gemartel <gemartel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hanglade <hanglade@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:20:57 by gemartel          #+#    #+#             */
-/*   Updated: 2023/12/08 13:22:12 by gemartel         ###   ########.fr       */
+/*   Updated: 2024/01/15 19:00:44 by hanglade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isspace(char c)
 {
-	if  (c == ' ' || c == '\t' || c == '\n' ||
-		 c == '\r' || c == '\f' || c == '\v')
-		 return (1);
+	if (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\r' || c == '\f' || c == '\v')
+		return (1);
 	return (0);
 }

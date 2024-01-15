@@ -6,7 +6,7 @@
 /*   By: hanglade <hanglade@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:19:21 by gemartel          #+#    #+#             */
-/*   Updated: 2024/01/02 18:35:39 by hanglade         ###   ########.fr       */
+/*   Updated: 2024/01/15 19:01:12 by hanglade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 long	ft_atol(const char *s)
 {
 	long	result;
-	int	sign;
-	int	i;
+	int		sign;
+	int		i;
 
 	result = 0;
 	sign = 1;

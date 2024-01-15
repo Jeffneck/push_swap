@@ -6,7 +6,7 @@
 /*   By: hanglade <hanglade@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:35:30 by hanglade          #+#    #+#             */
-/*   Updated: 2024/01/15 18:05:19 by hanglade         ###   ########.fr       */
+/*   Updated: 2024/01/15 19:11:16 by hanglade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ size_t	gnl_ft_strlen(char *s);
 char	*get_next_line(int fd);
 char	*str_init(char *s);
 char	*init_buffer(int fd, t_fd *buffer_memory);
+
 /**********memory**********/
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
@@ -51,10 +52,12 @@ void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
+
 /**********nbr**********/
 int		ft_atoi(const char *nptr);
 char	*ft_itoa(int n);
 long	ft_atol(const char *s);
+
 /**********str**********/
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -75,11 +78,13 @@ int		ft_toupper(int c);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_strcat(char *dest, const char *src);
+
 /**********char2**********/
-char 	**char2dup(char **char2);
+char	**char2dup(char **char2);
 size_t	char2len(char **char2);
 void	free_char2(char ***a_char2);
 void	ft_putchar2_endl(char **char2);
+
 /**********Others**********/
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -89,9 +94,7 @@ int		ft_isprint(int c);
 int		ft_isspace(char c);
 int		ft_issign(char c);
 
-
 /**list**/
-
 typedef struct s_list
 {
 	void			*content;

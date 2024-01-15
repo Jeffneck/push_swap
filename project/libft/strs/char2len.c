@@ -6,7 +6,7 @@
 /*   By: hanglade <hanglade@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 13:47:43 by hanglade          #+#    #+#             */
-/*   Updated: 2024/01/12 13:47:44 by hanglade         ###   ########.fr       */
+/*   Updated: 2024/01/15 18:59:05 by hanglade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	char2len(char **char2)
 {
-    size_t	i;
+	size_t	i;
 
-    i = 0;
-    while (char2[i])
-        i++;
-    return (i);
+	i = 0;
+	while (char2[i])
+		i++;
+	return (i);
 }

@@ -1,24 +1,40 @@
 SRCS	=	srcs/main.c\
-			srcs/stack_init.c\
-			srcs/manage_stelem.c\
-			srcs/manage_errors.c\
-			srcs/process_args.c\
-			srcs/sorting_algo.c\
-			srcs/operations.c\
-			srcs/manage_operations.c\
-			srcs/stack_utils.c\
-			srcs/stack_utils2.c\
+			\
+			srcs/closing/closing.c\
+			\
+			srcs/init/stack_init.c\
+			srcs/init/extract_args.c\
+			\
+			srcs/sorting_algos/sorting_algos.c\
+			srcs/sorting_algos/big_algo_moves.c\
+			srcs/sorting_algos/big_algo_targets.c\
+			\
+			srcs/stack_operations/manage_operations.c\
+			srcs/stack_operations/manage_operations2.c\
+			srcs/stack_operations/operations.c\
+			\
+			srcs/utils/stack_utils.c\
+			srcs/utils/math_utils.c\
+			srcs/utils/stack_utils2.c\
 
 SRCS_BONUS = checker/checker.c \
-			srcs/stack_init.c\
-			srcs/manage_stelem.c\
-			srcs/manage_errors.c\
-			srcs/process_args.c\
-			srcs/sorting_algo.c\
-			srcs/operations.c\
-			srcs/manage_operations.c\
-			srcs/stack_utils.c\
-			srcs/stack_utils2.c\
+			\
+			srcs/closing/closing.c\
+			\
+			srcs/init/stack_init.c\
+			srcs/init/extract_args.c\
+			\
+			srcs/sorting_algos/sorting_algos.c\
+			srcs/sorting_algos/big_algo_moves.c\
+			srcs/sorting_algos/big_algo_targets.c\
+			\
+			srcs/stack_operations/manage_operations.c\
+			srcs/stack_operations/manage_operations2.c\
+			srcs/stack_operations/operations.c\
+			\
+			srcs/utils/stack_utils.c\
+			srcs/utils/math_utils.c\
+			srcs/utils/stack_utils2.c\
 
 OBJS	=	$(SRCS:%.c=%.o)
 
@@ -59,6 +75,7 @@ $(LIB)	:
 
 clean	:
 	rm -rf $(OBJS)
+	rm -rf $(OBJS_BONUS)
 	make clean -C ./libft
 
 fclean	:	clean

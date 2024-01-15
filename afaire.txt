@@ -1,2 +1,0 @@
-valider les leaks sur le checker
-valider le makefile

@@ -80,10 +80,10 @@ RM	= rm -rf
 
 
 %.o:	%.c libft.h 
-	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-		@ar rc ${NAME} ${OBJS}
+	ar rc ${NAME} ${OBJS}
 # @mkdir -p obj
 # @mv ${OBJS} obj/
 

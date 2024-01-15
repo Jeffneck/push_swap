@@ -6,7 +6,7 @@
 /*   By: hanglade <hanglade@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:35:30 by hanglade          #+#    #+#             */
-/*   Updated: 2024/01/12 14:19:41 by hanglade         ###   ########.fr       */
+/*   Updated: 2024/01/15 18:05:19 by hanglade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ typedef struct s_fd
 	int		fd;
 	char	buffer[BUFFER_SIZE + 1];
 }	t_fd;
-
-
 
 char	*ft_strdup(const char *str);
 size_t	gnl_ft_strlen(char *s);

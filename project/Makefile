@@ -17,7 +17,7 @@ SRCS	=	srcs/main.c\
 			srcs/utils/math_utils.c\
 			srcs/utils/stack_utils2.c\
 
-SRCS_BONUS = checker/checker.c \
+SRCS_BONUS = srcs/checker/checker.c \
 			\
 			srcs/closing/closing.c\
 			\
@@ -52,26 +52,29 @@ FLAGS	=	-Wall -Wextra -Werror -g3
 
 NAME	=	push_swap
 
+NAME_BONUS	=	srcs/checker/checker
+
 LIB		=	libft/libft.a
 
 %.o	:		%.c  $(LIB) $(INC)
 	$(CC) $(FLAGS) $(FlAGS_LIB) $(FLAGS_INC) -c $< -o $@
 
 $(NAME)	:	$(OBJS) Makefile $(INC) $(LIB)
+	$(CC) $(FLAGS) $(INC) $(OBJS) $(LIB) -o $(NAME)
+
+$(NAME_BONUS)	:	$(OBJS_BONUS) Makefile $(INC) $(LIB)
+	$(CC) $(FLAGS) $(INC) $(OBJS_BONUS) $(LIB) -o checker
+
+$(LIB)	:	force
 	make -C libft
-	$(CC) $(FLAGS) $(INC) $(OBJS) $(LIB) -o $(NAME) 
 
 all		:		$(NAME)
 
-bonus	:	$(OBJS_BONUS) Makefile $(INC) $(LIB)
-	make -C libft
-	$(CC) $(FLAGS) $(INC) $(OBJS_BONUS) $(LIB) -o checker/checker
+bonus	:		$(NAME_BONUS)
 
-libft	:
-	make -C libft
+force	:
 
-$(LIB)	:
-	make -C libft
+libft	: $(LIB)
 
 clean	:
 	rm -rf $(OBJS)
@@ -80,6 +83,7 @@ clean	:
 
 fclean	:	clean
 	rm -rf $(NAME)
+	rm -rf checker
 	make fclean -C ./libft
 
 re		:	fclean all

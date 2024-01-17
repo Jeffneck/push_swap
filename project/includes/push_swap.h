@@ -6,7 +6,7 @@
 /*   By: hanglade <hanglade@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:25:49 by hanglade          #+#    #+#             */
-/*   Updated: 2024/01/15 16:33:03 by hanglade         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:04:18 by hanglade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,20 @@ void		operations_manager(t_pswap *a_pswap, t_stconfig *sta,
 				t_stconfig *stb, char *str_ops);
 
 //manage_operations2.c
-void		swap_manager(t_stconfig *stA, t_stconfig *stB, char *operation);
-void		push_manager(t_stconfig *stA, t_stconfig *stB, char *operation);
-void		rotate_manager(t_stconfig *stA, t_stconfig *stB, char *operation);
-void		reverse_rotate_manager(t_stconfig *stA, t_stconfig *stB,
+void		swap_manager(t_stconfig *stA, t_stconfig *stB,
 				char *operation);
+void		push_manager(t_stconfig *stA, t_stconfig *stB,
+				char *operation);
+void		rotate_manager(t_stconfig *stA, t_stconfig *stB,
+				char *operation);
+void		reverse_rotate_manager(t_stconfig *stA,
+				t_stconfig *stB, char *operation);
 
 //operations.c
-void		swap_top_stack(t_stconfig *st);
-void		push_st1_to_st2(t_stconfig *st1, t_stconfig *st2);
-void		reverse_rotate_st(t_stconfig *st);
-void		rotate_st(t_stconfig *st);
+int			swap_top_stack(t_stconfig *st);
+int			push_st1_to_st2(t_stconfig *st1, t_stconfig *st2);
+int			reverse_rotate_st(t_stconfig *st);
+int			rotate_st(t_stconfig *st);
 
 //UTILS
 //math_utils.c

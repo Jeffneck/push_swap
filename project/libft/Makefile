@@ -84,8 +84,6 @@ RM	= rm -rf
 
 ${NAME}:	${OBJS}
 	ar rc ${NAME} ${OBJS}
-# @mkdir -p obj
-# @mv ${OBJS} obj/
 
 all:	${NAME}
 
